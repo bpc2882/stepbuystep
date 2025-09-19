@@ -1,65 +1,7 @@
 import logo from "./assets/sbs_logo.png";
 import React, { useState } from "react";
 import { Lightbulb, Target, Zap, ShieldCheck, Gauge, Users, Mail } from "lucide-react";
-
-
-function ContactForm() {
-  const [status, setStatus] = React.useState("idle"); // idle | sending | sent | error
-  const [err, setErr] = React.useState("");
-
-  async function onSubmit(e) {
-    e.preventDefault();
-    setStatus("sending");
-    setErr("");
-
-    const form = e.currentTarget;
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value,
-    };
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("Request failed");
-      setStatus("sent");
-      form.reset();
-    } catch (e) {
-      setStatus("error");
-      setErr("Sorry—something went wrong. Please try again.");
-    }
-  }
-
-  return (
-    <form onSubmit={onSubmit} className="space-y-4">
-      <div>
-        <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
-        <input id="name" name="name" type="text" required className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-      </div>
-      <div>
-        <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" required className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400" />
-      </div>
-      <div>
-        <label className="block text-gray-700 mb-2" htmlFor="message">Message</label>
-        <textarea id="message" name="message" rows="4" required className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
-      </div>
-
-      <button disabled={status === "sending"} type="submit" className="bg-gradient-to-br from-rose-200 to-rose-500 rounded-2xl shadow-2xl px-8 py-5 relative overflow-hidden transform hover:scale-[1.08] transition font-serif">
-        <span className="relative z-10 text-2xl font-bold text-gray-900 tracking-tight">
-          {status === "sending" ? "Sending..." : status === "sent" ? "Sent ✓" : "Send Message"}
-        </span>
-      </button>
-
-      {status === "error" && <p className="text-rose-600">{err}</p>}
-      {status === "sent"  && <p className="text-emerald-600">Thanks! We’ll be in touch shortly.</p>}
-    </form>
-  );
-}
+import ContactForm from "./ContactForm";
 
 
 
