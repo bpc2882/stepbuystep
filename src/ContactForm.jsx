@@ -19,17 +19,22 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
 
+      // Read body as text, try to parse JSON if possible
+      const text = await res.text();
+      let data = {};
+      try { data = JSON.parse(text); } catch (_) {}
+
       if (res.ok) {
         setStatus("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        const errText = await res.text();
-        console.error("API responded with error:", errText);
-        setStatus("Sorry—something went wrong. Please try again.");
+        const msg = data?.error || data?.message || text || "Server error";
+        console.error("API error:", { status: res.status, msg, raw: text });
+        setStatus(msg);
       }
     } catch (err) {
       console.error("Form submit error:", err);
-      setStatus("Sorry—something went wrong. Please try again.");
+      setStatus(err?.message || "Network error");
     }
   };
 
