@@ -1,3 +1,4 @@
+import logo from "./assets/sbs_logo.png";
 import React, { useState } from "react";
 import { Lightbulb, Target, Zap, ShieldCheck, Gauge, Users, Mail } from "lucide-react";
 
@@ -145,27 +146,34 @@ function StepBuyStepPage() {
         />
       </div>
 
-      {/* Header */}
-      <header className="px-6 md:px-10 pt-10 pb-6 max-w-6xl mx-auto flex items-center justify-between font-serif">
-        <div className="flex items-center space-x-4">
-          <div className="h-20 md:h-28 w-40 bg-gray-200 flex items-center justify-center text-gray-500 italic rounded shadow-inner">
-            Logo Placeholder
-          </div>
-        </div>
+     {/* Header */}
+<header className="px-6 md:px-10 pt-10 pb-6 max-w-6xl mx-auto flex items-center justify-between font-serif">
+  <div className="flex items-center space-x-4">
+    <div className="h-20 md:h-28">
+      <img 
+        src={logo} 
+        alt="StepBuyStep logo" 
+        className="h-full w-auto object-contain"
+      />
+    </div>
+  </div>
 
-        <a
-          href="#contact"
-          className="bg-gradient-to-br from-rose-200 to-rose-500 rounded-2xl shadow-2xl px-8 py-5 flex items-center justify-center text-center relative overflow-hidden transform hover:scale-[1.08] transition font-serif"
-        >
-          <Mail
-            className="absolute inset-0 m-auto w-10 h-10 text-white opacity-20 [filter:drop-shadow(0_6px_10px_rgba(0,0,0,0.45))]"
-            style={{ mixBlendMode: "overlay" }}
-          />
-          <span className="relative z-10 text-2xl font-bold text-gray-900 tracking-tight">
-            Contact Us
-          </span>
-        </a>
-      </header>
+  <a
+    href="#contact"
+    className="bg-gradient-to-br from-rose-200 to-rose-500 rounded-2xl shadow-2xl px-8 py-5 flex items-center justify-center text-center relative overflow-hidden transform hover:scale-[1.08] transition font-serif"
+  >
+    <Mail
+      className="absolute inset-0 m-auto w-10 h-10 text-white opacity-20 [filter:drop-shadow(0_6px_10px_rgba(0,0,0,0.45))]"
+      style={{ mixBlendMode: "overlay" }}
+    />
+    <span className="relative z-10 text-2xl font-bold text-gray-900 tracking-tight">
+      Contact Us
+    </span>
+  </a>
+</header>
+
+
+
 
       {/* Hero */}
       <main className="px-6 md:px-10 pb-20 max-w-6xl mx-auto">
