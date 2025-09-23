@@ -8,19 +8,14 @@ import About from "./About";
 
 /* ---------- Small components ---------- */
 const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border }) => {
-  const [flipped, setFlipped] = React.useState(false);
-
+  const [flipped, setFlipped] = useState(false);
   return (
     <div
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
       className="perspective h-64"
     >
-      <div
-        className={`relative w-full h-full duration-700 preserve-3d ${
-          flipped ? "rotate-y-180" : ""
-        }`}
-      >
+      <div className={`relative preserve-3d transform duration-700 w-full h-full ${flipped ? "rotate-y-180" : ""}`}>
         {/* Front */}
         <div
           className="absolute inset-0 rounded-2xl shadow-2xl p-6 flex flex-col items-center justify-center text-center font-serif backface-hidden"
@@ -28,27 +23,24 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border }
             backgroundColor: bg,
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
+            transform: "rotateY(0deg) translateZ(0)",
+            WebkitTransform: "rotateY(0deg) translateZ(0)",
           }}
         >
-          <Icon
-            className="absolute inset-0 m-auto w-3/4 h-3/4 opacity-20"
-            style={{ color: textColor, mixBlendMode: "overlay" }}
-          />
-          <h3 className="text-3xl font-bold mb-6 tracking-wide relative z-10 leading-snug">
-            {title}
-          </h3>
-          <p className="font-medium text-xl leading-relaxed relative z-10 mt-2">
-            {text}
-          </p>
+          <Icon className="absolute inset-0 m-auto w-3/4 h-3/4 opacity-20" style={{ color: textColor, mixBlendMode: "overlay" }} />
+          <h3 className="text-3xl font-bold mb-6 tracking-wide relative z-10 leading-snug">{title}</h3>
+          <p className="font-medium text-xl leading-relaxed relative z-10 mt-2">{text}</p>
         </div>
 
         {/* Back */}
         <div
-          className="absolute inset-0 rounded-2xl shadow-2xl p-6 flex items-center justify-center text-center font-serif backface-hidden rotate-y-180"
+          className="absolute inset-0 rounded-2xl shadow-2xl p-6 flex items-center justify-center text-center font-serif backface-hidden w-full h-full"
           style={{
             backgroundColor: bg,
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
+            transform: "rotateY(180deg) translateZ(0)",
+            WebkitTransform: "rotateY(180deg) translateZ(0)",
           }}
         >
           <p className="font-medium text-xl leading-relaxed">{detail}</p>
