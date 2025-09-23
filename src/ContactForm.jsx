@@ -19,7 +19,6 @@ export default function ContactForm() {
         body: JSON.stringify(formData),
       });
 
-      // Read body as text, try to parse JSON if possible
       const text = await res.text();
       let data = {};
       try { data = JSON.parse(text); } catch (_) {}
@@ -47,6 +46,7 @@ export default function ContactForm() {
           type="text"
           value={formData.name}
           onChange={handleChange}
+          autoComplete="name"
           className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
         />
       </div>
@@ -57,6 +57,7 @@ export default function ContactForm() {
           type="email"
           value={formData.email}
           onChange={handleChange}
+          autoComplete="email"
           className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
         />
       </div>
@@ -67,6 +68,7 @@ export default function ContactForm() {
           rows="4"
           value={formData.message}
           onChange={handleChange}
+          autoComplete="off"
           className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
         />
       </div>
