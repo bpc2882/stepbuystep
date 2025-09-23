@@ -138,37 +138,26 @@ function StepBuyStepPage() {
 
   return (
     <div className="relative overflow-hidden antialiased">
-      {/* Header */}
-      <header className="px-10 md:px-16 pt-14 pb-6 max-w-6xl mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-4 ml-4">
-          <div className="h-24 md:h-32">
-            <img src={logo} alt="StepBuyStep logo" className="h-full w-auto object-contain" />
-          </div>
-        </div>
+<header className="px-6 md:px-16 pt-10 pb-6 max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
+  <div className="flex justify-center md:justify-start mb-4 md:mb-0">
+    <div className="h-20 md:h-32">
+      <img src={logo} alt="StepBuyStep logo" className="h-full w-auto object-contain" />
+    </div>
+  </div>
 
-        {/* Contact Us button */}
-<a
-  href="#contact"
-  className={`${ROUNDED} px-8 py-5 flex items-center justify-center text-center relative overflow-hidden transform hover:scale-[1.08] transition mr-4`}
-  style={{
-    background: makeGradient(contactHSL.h, contactHSL.s, contactHSL.l),
-    boxShadow: SHADOW_STRENGTH,
-  }}
->
-  <Mail
-    className="absolute inset-0 m-auto w-10 h-10 opacity-20"
-    style={{ color: getTextColor(contactHSL.h, contactHSL.s, contactHSL.l), mixBlendMode: "overlay" }}
-  />
-  <span
-    className="relative z-10 text-2xl font-bold tracking-tight"
-    style={{ color: getTextColor(contactHSL.h, contactHSL.s, contactHSL.l) }} // ✅ force text color here
+  {/* Contact Us button */}
+  <a
+    href="#contact"
+    className={`${ROUNDED} px-8 py-4 flex items-center justify-center text-center relative overflow-hidden transform hover:scale-[1.08] transition`}
+    style={{
+      background: makeGradient(contactHSL.h, contactHSL.s, contactHSL.l),
+      color: getTextColor(contactHSL.h, contactHSL.s, contactHSL.l),
+      boxShadow: SHADOW_STRENGTH,
+    }}
   >
     Contact Us
-  </span>
-</a>
-
-
-      </header>
+  </a>
+</header>
 
       {/* Hero */}
       <main className="px-6 md:px-10 pb-20 max-w-6xl mx-auto">
