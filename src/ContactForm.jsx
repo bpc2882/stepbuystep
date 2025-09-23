@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import {
+  makeGradient,
+  getTextColor,
+  SHADOW_STRENGTH,
+  ROUNDED,
+  contactHSL,
+} from "./theme";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -38,46 +45,62 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Name */}
       <div>
-        <label className="block text-gray-700 mb-2" htmlFor="name">Name</label>
+        <label className="block mb-2 font-medium" htmlFor="name">Name</label>
         <input
           id="name"
           type="text"
           value={formData.name}
           onChange={handleChange}
           autoComplete="name"
-          className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
+          className={`w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 ${ROUNDED}`}
+          style={{ boxShadow: SHADOW_STRENGTH }}
         />
       </div>
+
+      {/* Email */}
       <div>
-        <label className="block text-gray-700 mb-2" htmlFor="email">Email</label>
+        <label className="block mb-2 font-medium" htmlFor="email">Email</label>
         <input
           id="email"
           type="email"
           value={formData.email}
           onChange={handleChange}
           autoComplete="email"
-          className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
+          className={`w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 ${ROUNDED}`}
+          style={{ boxShadow: SHADOW_STRENGTH }}
         />
       </div>
+
+      {/* Message */}
       <div>
-        <label className="block text-gray-700 mb-2" htmlFor="message">Message</label>
+        <label className="block mb-2 font-medium" htmlFor="message">Message</label>
         <textarea
           id="message"
           rows="4"
           value={formData.message}
           onChange={handleChange}
           autoComplete="off"
-          className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-rose-400"
+          className={`w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 ${ROUNDED}`}
+          style={{ boxShadow: SHADOW_STRENGTH }}
         />
       </div>
+
+      {/* Button */}
       <button
         type="submit"
-        className="bg-gradient-to-br from-rose-200 to-rose-500 rounded-2xl shadow-2xl px-8 py-5 flex items-center justify-center text-center relative overflow-hidden transform hover:scale-[1.08] transition font-serif"
+        className={`${ROUNDED} px-8 py-4 shadow-md hover:scale-[1.08] transition font-medium`}
+        style={{
+          background: makeGradient(contactHSL.h, contactHSL.s, contactHSL.l),
+          color: getTextColor(contactHSL.h, contactHSL.s, contactHSL.l),
+          boxShadow: SHADOW_STRENGTH,
+        }}
       >
         Send Message
       </button>
+
       {status && <p className="mt-2 text-gray-700">{status}</p>}
     </form>
   );

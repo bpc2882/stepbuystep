@@ -1,50 +1,69 @@
 import logo from "./assets/sbs_logo.png";
 import React, { useState } from "react";
-import { Lightbulb, Target, Zap, Briefcase, Users, BookOpen, Mail } from "lucide-react";
+import { Lightbulb, Target, Zap, Briefcase, Users, BookOpen } from "lucide-react";
 import ContactForm from "./ContactForm";
 import { Routes, Route, Link } from "react-router-dom";
 import About from "./About";
 
-// Utility: make gradient from a base color
-function makeGradient(h, s, l, strength = 7) {
-  return `linear-gradient(135deg,
-    hsl(${h}, ${s}%, ${l}%),
-    hsl(${h}, ${s}%, ${l + strength}%)
-  )`;
-}
+import {
+  makeGradient,
+  getTextColor,
+  SHADOW_STRENGTH,
+  ROUNDED,
+  BASE_TEXT_COLOR,
+  contactHSL,
+  aboutHSL,
+} from "./theme";
 
-// Global controls
-const SHADOW_STRENGTH = "8px 8px 20px rgba(0,0,0,0.6)";
-const ROUNDED = "rounded-lg";
-const BASE_TEXT_COLOR = "#3A2C28";
+/* ---------- Shared components ---------- */
 
-// Toggle complementary text colours
-const USE_COMPLEMENTARY_TEXT = true;
+/* Highlighted brand name (bold, no extra glow) */
+const HighlightSBS = () => (
+  <span className="inline-flex items-baseline gap-1 align-baseline font-bold">
+    <span className="relative top-1">Step</span>
+    <span className="italic">Buy</span>
+    <span className="relative -top-1">Step</span>
+  </span>
+);
 
-// Pick best text colour
-function getTextColor(h, s, l) {
-  if (USE_COMPLEMENTARY_TEXT) {
-    const compHue = (h + 180) % 360;
+/* Section title with wide, subtle glow */
+const SectionTitle = ({ text }) => {
+  const words = text.split(" ");
+  const firstWord = words[0];
+  const rest = words.slice(1).join(" ");
 
-    // ✅ Use a narrower cutoff: darker backgrounds need light text,
-    // lighter backgrounds need dark text
-    const lightThreshold = 60; 
+  return (
+    <div className="my-24 text-center max-w-4xl mx-auto relative">
+      <h2
+        className="text-3xl md:text-4xl font-bold tracking-wide mb-6 relative z-10"
+        style={{ color: BASE_TEXT_COLOR }}
+      >
+        {text.includes("StepBuyStep") ? (
+          <HighlightSBS />
+        ) : (
+          <>
+            <span className="italic">{firstWord}</span> {rest}
+          </>
+        )}
+      </h2>
 
-    if (l < lightThreshold) {
-      return `hsl(${compHue}, ${s}%, 90%)`; // light text
-    } else {
-      return `hsl(${compHue}, ${s}%, 20%)`; // dark text
-    }
-  } else {
-    return l > 50 ? "#2A2A2A" : "#FFF8F0";
-  }
-}
+      {/* glowing bar behind heading */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
+                   w-[90vw] h-[260px] bg-[#F4B93C] rounded-full 
+                   blur-[180px] opacity-15"
+      ></div>
 
-// Predefine button colours
-const contactHSL = { h: 28, s: 54, l: 52 }; // copper
-const aboutHSL   = { h: 28, s: 54, l: 52 }; // same amber tone
+      <div
+        className="mx-auto h-1 w-full rounded-full relative z-10"
+        style={{ background: "linear-gradient(to right, #C17E46, #F4B93C)" }}
+      />
+    </div>
+  );
+};
 
-/* ---------- Small components ---------- */
+
+/* Flippable box */
 const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, height = "h-64" }) => {
   const [flipped, setFlipped] = useState(false);
 
@@ -74,7 +93,9 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, 
             className="absolute inset-0 m-auto w-3/4 h-3/4 opacity-20"
             style={{ color: textColor, mixBlendMode: "overlay" }}
           />
-          <h3 className="text-2xl font-bold mb-4 tracking-wide relative z-10 leading-snug">{title}</h3>
+          <h3 className="text-2xl font-bold mb-4 tracking-wide relative z-10 leading-snug">
+            {title}
+          </h3>
           <p className="font-medium text-lg leading-relaxed relative z-10 mt-2">{text}</p>
         </div>
 
@@ -96,49 +117,66 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, 
   );
 };
 
-/* Section title */
-const SectionTitle = ({ text }) => (
-  <div className="my-16 text-center max-w-4xl mx-auto">
-    <h2 className="text-3xl md:text-4xl font-bold tracking-wide mb-6" style={{ color: BASE_TEXT_COLOR }}>
-      {text.includes("StepBuyStep") ? (
-        <span className="inline-flex items-baseline gap-1 align-baseline">
-          <span className="relative top-1">Step</span>
-          <span className="italic">Buy</span>
-          <span className="relative -top-1">Step</span>
-        </span>
-      ) : (
-        <>
-          <span className="italic">{text.split(" ")[0]}</span>{" "}
-          {text.split(" ").slice(1).join(" ")}
-        </>
-      )}
-    </h2>
-    <div
-      className="mx-auto h-1 w-full rounded-full"
-      style={{
-        background: "linear-gradient(to right, #C17E46, #F4B93C)",
-      }}
-    ></div>
-  </div>
-);
-
 /* ---------- Page ---------- */
 function StepBuyStepPage() {
   const howItems = [
-    { icon: Lightbulb, title: "Logic", text: "We keep it logical — clear thinking, clear steps.", detail: "Our logical approach means we strip away noise and focus on what matters, ensuring clarity throughout every stage." },
-    { icon: Target, title: "Solutions-focus", text: "We work to the solution, not the process.", detail: "We keep eyes on the outcomes, adapting methods flexibly to get results, not red tape." },
-    { icon: Zap, title: "Expedience", text: "We crack on and deliver at pace.", detail: "Our delivery mindset means momentum is maintained without compromising quality." },
+    {
+      icon: Lightbulb,
+      title: "Logic",
+      text: "We keep it logical — clear thinking, clear steps.",
+      detail:
+        "Our logical approach means we strip away noise and focus on what matters, ensuring clarity throughout every stage.",
+    },
+    {
+      icon: Target,
+      title: "Solutions-focus",
+      text: "We work to the solution, not the process.",
+      detail:
+        "We keep eyes on the outcomes, adapting methods flexibly to get results, not red tape.",
+    },
+    {
+      icon: Zap,
+      title: "Expedience",
+      text: "We crack on and deliver at pace.",
+      detail:
+        "Our delivery mindset means momentum is maintained without compromising quality.",
+    },
   ];
 
   const whatItems = [
-    { icon: Briefcase, title: "Procurement as a Service", text: "Flexible, outcome-focused support to meet your buying needs.", detail: "From one-off projects to ongoing capacity, we provide tailored procurement support that scales with you." },
-    { icon: Users, title: "Commercial Consultation", text: "Practical advice and clear strategies for better business decisions.", detail: "We advise with pragmatism — commercial strategies grounded in reality, not theory." },
-    { icon: BookOpen, title: "Commercial Training", text: "Upskilling teams with relevant, tailored training — including public sector specifics.", detail: "We design training that empowers people to navigate complexity confidently." },
+    {
+      icon: Briefcase,
+      title: "Procurement as a Service",
+      text: "Flexible, outcome-focused support to meet your buying needs.",
+      detail:
+        "From one-off projects to ongoing capacity, we provide tailored procurement support that scales with you.",
+    },
+    {
+      icon: Users,
+      title: "Commercial Consultation",
+      text: "Practical advice and clear strategies for better business decisions.",
+      detail:
+        "We advise with pragmatism — commercial strategies grounded in reality, not theory.",
+    },
+    {
+      icon: BookOpen,
+      title: "Commercial Training",
+      text: "Upskilling teams with relevant, tailored training — including public sector specifics.",
+      detail:
+        "We design training that empowers people to navigate complexity confidently.",
+    },
   ];
 
   return (
     <div className="relative overflow-hidden antialiased">
-<header className="px-6 md:px-16 pt-10 pb-6 max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
+<header className="relative px-6 md:px-16 pt-10 pb-6 max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
+  {/* glowing halo behind header */}
+  <div
+    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
+               w-[95vw] h-[200px] bg-[#F4B93C] rounded-full 
+               blur-[160px] opacity-15 -z-10"
+  ></div>
+
   <div className="flex justify-center md:justify-start mb-4 md:mb-0">
     <div className="h-20 md:h-32">
       <img src={logo} alt="StepBuyStep logo" className="h-full w-auto object-contain" />
@@ -158,43 +196,34 @@ function StepBuyStepPage() {
     Contact Us
   </a>
 </header>
-
       {/* Hero */}
       <main className="px-6 md:px-10 pb-20 max-w-6xl mx-auto">
-        <div className="pt-10 max-w-4xl mx-auto mb-16">
+        <div className="pt-10 max-w-4xl mx-auto mb-24">
           <h1
-            className="text-3xl md:text-4xl font-bold leading-tight tracking-tight mb-6"
-            style={{ color: BASE_TEXT_COLOR }}
+            className="text-3xl md:text-[2.4rem] font-bold leading-tight mb-6"
+            style={{ color: BASE_TEXT_COLOR, letterSpacing: "0.03em" }}
           >
             Procurement can be difficult — but it doesn’t have to be painful.
           </h1>
           <p
-            className="text-lg md:text-xl text-justify leading-relaxed"
+            className="text-lg md:text-xl leading-relaxed"
             style={{ color: BASE_TEXT_COLOR }}
           >
-            At{" "}
-            <span
-              className="font-semibold inline-flex items-baseline gap-1"
-              style={{ color: BASE_TEXT_COLOR }}
-            >
-              <span className="relative top-1">Step</span>
-              <span className="italic">Buy</span>
-              <span className="relative -top-1">Step</span>
-            </span>
-            , we bring a clear, logical approach to commercial activity. Rooted in problem-solving
-            rather than procedure, we help organisations cut through complexity, focus on outcomes,
-            and make better buying and business decisions with confidence.
+            At <HighlightSBS />, we bring a clear, logical approach to commercial
+            activity. Rooted in problem-solving rather than procedure, we help
+            organisations cut through complexity, focus on outcomes, and make
+            better buying and business decisions with confidence.
           </p>
         </div>
 
         {/* HOW */}
         <SectionTitle text="How we work" />
-        <div className="mx-auto max-w-4xl grid gap-8 md:grid-cols-3 mb-16">
+        <div className="mx-auto max-w-4xl grid gap-8 md:grid-cols-3 mb-24">
           {howItems.map((item, idx) => {
             const colors = [
               { h: 120, s: 25, l: 30 },
               { h: 30, s: 50, l: 50 },
-              { h: 45, s: 80, l: 55 },
+              { h: 42, s: 70, l: 48 },
             ];
             const { h, s, l } = colors[idx % colors.length];
             const bg = makeGradient(h, s, l);
@@ -205,7 +234,7 @@ function StepBuyStepPage() {
 
         {/* WHAT */}
         <SectionTitle text="What we do" />
-        <div className="mx-auto max-w-4xl grid gap-8 md:grid-cols-3 mb-16">
+        <div className="mx-auto max-w-4xl grid gap-8 md:grid-cols-3 mb-24">
           {whatItems.map((item, idx) => {
             const colors = [
               { h: 35, s: 60, l: 75 },
@@ -219,19 +248,20 @@ function StepBuyStepPage() {
           })}
         </div>
 
-        {/* About */}
+        {/* ABOUT */}
         <SectionTitle text="About StepBuyStep" />
-        <section id="about" className="max-w-4xl mx-auto mb-16 px-6 text-justify">
+        <section id="about" className="max-w-4xl mx-auto mb-24 px-6 text-justify">
           <p className="leading-relaxed text-lg md:text-xl mb-5" style={{ color: BASE_TEXT_COLOR }}>
-            With over two decades in the commercial world,{" "}
-            <span className="inline-flex items-baseline gap-1 align-baseline text-2xl font-bold" style={{ color: BASE_TEXT_COLOR }}>
-              <span className="relative top-1">Step</span>
-              <span className="italic">Buy</span>
-              <span className="relative -top-1">Step</span>
-            </span>{" "}
-            brings deep expertise from both public and private sectors. Our focus is always
-            problem-solving — helping organisations cut through complexity, overcome obstacles,
-            and move forward with confidence.
+            With over 20 years of commercial and procurement experience, <HighlightSBS /> is led by Ben Crow.
+            Having worked extensively across both public and private sectors, I bring practical insight into
+            how organisations can deliver outcomes effectively while staying compliant with the Procurement Act
+            and wider regulatory framework.
+          </p>
+          <p className="leading-relaxed text-lg md:text-xl mb-5" style={{ color: BASE_TEXT_COLOR }}>
+            My focus has always been problem-solving: helping organisations cut through complexity,
+            overcome obstacles, and achieve results with confidence. Whether it’s procurement strategy,
+            commercial advice, or team training, <HighlightSBS /> offers support that is pragmatic,
+            adaptable, and always outcome-driven.
           </p>
 
           {/* Find out more button */}
@@ -248,7 +278,7 @@ function StepBuyStepPage() {
           </Link>
         </section>
 
-        {/* Contact */}
+        {/* CONTACT */}
         <SectionTitle text="Contact Us" />
         <section
           id="contact"
