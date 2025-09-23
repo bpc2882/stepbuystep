@@ -6,29 +6,24 @@ import { Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import About from "./About";
 
-
-
 /* ---------- Small components ---------- */
 const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border }) => {
-  const [flipped, setFlipped] = useState(false);
+  const [flipped, setFlipped] = React.useState(false);
+
   return (
     <div
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
       className="perspective h-64"
     >
-     <div
-  className={`relative preserve-3d transform duration-700 w-full h-full ${
-    flipped ? "rotate-y-180" : ""
-  }`}
->
-
-
-
-
+      <div
+        className={`relative w-full h-full duration-700 preserve-3d ${
+          flipped ? "rotate-y-180" : ""
+        }`}
+      >
         {/* Front */}
         <div
-          className="rounded-2xl shadow-2xl p-6 flex flex-col items-center justify-center text-center relative overflow-hidden w-full h-full font-serif backface-hidden"
+          className="absolute inset-0 rounded-2xl shadow-2xl p-6 flex flex-col items-center justify-center text-center font-serif backface-hidden"
           style={{
             backgroundColor: bg,
             color: textColor,
@@ -46,9 +41,10 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border }
             {text}
           </p>
         </div>
+
         {/* Back */}
         <div
-          className="absolute inset-0 rounded-2xl shadow-2xl p-6 flex items-center justify-center text-center font-serif rotate-y-180 backface-hidden w-full h-full"
+          className="absolute inset-0 rounded-2xl shadow-2xl p-6 flex items-center justify-center text-center font-serif backface-hidden rotate-y-180"
           style={{
             backgroundColor: bg,
             color: textColor,
@@ -61,6 +57,8 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border }
     </div>
   );
 };
+
+
 
 const SectionTitle = ({ text }) => (
   <div className="my-16 text-center font-serif max-w-4xl mx-auto">
@@ -135,7 +133,6 @@ function StepBuyStepPage() {
 
   return (
     <div className="font-serif relative overflow-hidden antialiased">
-
       {/* Soft colourful background accents */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div
@@ -176,12 +173,21 @@ function StepBuyStepPage() {
       {/* Hero */}
       <main className="px-6 md:px-10 pb-20 max-w-6xl mx-auto">
         <div className="pt-10 max-w-4xl mx-auto mb-16">
-          <h1 className="text-3xl md:text-4xl font-serif font-bold leading-tight tracking-tight mb-6" style={{ color: "#3A2C28" }}>
+          <h1
+            className="text-3xl md:text-4xl font-serif font-bold leading-tight tracking-tight mb-6"
+            style={{ color: "#3A2C28" }}
+          >
             Procurement can be difficult — but it doesn’t have to be painful.
           </h1>
-          <p className="text-lg md:text-xl text-justify leading-relaxed font-serif" style={{ color: "#5C3A2E" }}>
+          <p
+            className="text-lg md:text-xl text-justify leading-relaxed font-serif"
+            style={{ color: "#5C3A2E" }}
+          >
             At{" "}
-            <span className="font-semibold inline-flex items-baseline gap-1" style={{ color: "#3A2C28" }}>
+            <span
+              className="font-semibold inline-flex items-baseline gap-1"
+              style={{ color: "#3A2C28" }}
+            >
               <span className="relative top-1">Step</span>
               <span className="italic">Buy</span>
               <span className="relative -top-1">Step</span>
@@ -223,7 +229,10 @@ function StepBuyStepPage() {
         {/* About */}
         <SectionTitle text="About StepBuyStep" />
         <section id="about" className="max-w-4xl mx-auto mb-16 px-6">
-          <p className="leading-relaxed tracking-normal text-justify text-base md:text-lg mb-5" style={{ color: "#5C3A2E" }}>
+          <p
+            className="leading-relaxed tracking-normal text-justify text-base md:text-lg mb-5"
+            style={{ color: "#5C3A2E" }}
+          >
             <span className="inline-flex items-baseline gap-1 align-baseline">
               <span className="relative top-1">Step</span>
               <span className="italic">Buy</span>
@@ -232,20 +241,26 @@ function StepBuyStepPage() {
             are a team of experienced procurement and commercial professionals who believe buying
             should be clear, logical and effective.
           </p>
-          <p className="leading-relaxed tracking-normal text-justify text-base md:text-lg mb-5" style={{ color: "#5C3A2E" }}>
+          <p
+            className="leading-relaxed tracking-normal text-justify text-base md:text-lg mb-5"
+            style={{ color: "#5C3A2E" }}
+          >
             Our backgrounds span both public and private sectors, from multi-million-pound
             procurements to tailored training and hands-on delivery.
           </p>
-          <p className="leading-relaxed tracking-normal text-justify text-base md:text-lg" style={{ color: "#5C3A2E" }}>
+          <p
+            className="leading-relaxed tracking-normal text-justify text-base md:text-lg"
+            style={{ color: "#5C3A2E" }}
+          >
             What unites us is a solutions-focused approach: practical advice, grounded experience,
             and a drive to make the complex feel manageable.
           </p>
-<Link
-  to="/about"
-  className="inline-block mt-6 bg-[#C17E46] text-white px-6 py-3 rounded-lg shadow-md hover:scale-105 transition"
->
-  Find out more
-</Link>
+          <Link
+            to="/about"
+            className="inline-block mt-6 bg-[#C17E46] text-white px-6 py-3 rounded-lg shadow-md hover:scale-105 transition"
+          >
+            Find out more
+          </Link>
         </section>
 
         {/* Contact */}
