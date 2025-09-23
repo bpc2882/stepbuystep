@@ -131,12 +131,6 @@ function StepBuyStepPage() {
 
   return (
     <div className="font-serif relative overflow-hidden antialiased">
-      <style>{`
-        .perspective { perspective: 1000px; }
-        .preserve-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-      `}</style>
 
       {/* Soft colourful background accents */}
       <div className="pointer-events-none absolute inset-0 -z-10">

@@ -4,3 +4,19 @@
 @source "../index.html";
 @source "./**/*.{js,jsx,ts,tsx}";
 
+.perspective {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; /* iOS fix */
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
