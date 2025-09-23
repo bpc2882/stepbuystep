@@ -1,25 +1,44 @@
+/* 1. Imports go first */
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:wght@400;700&family=Work+Sans:wght@400;600&family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@400;600&family=Lora:wght@400;700&family=Raleway:wght@400;600&family=Crimson+Pro:wght@400;700&display=swap');
 
-/* Tell Tailwind v4 what to scan */
+/* 2. Theme customizations */
+@theme {
+  --font-ecm-sans: "Raleway", ui-sans-serif, system-ui;
+  --font-ecm-serif: "Crimson Pro", Georgia, serif;
+
+  --font-modern-sans: "Work Sans", ui-sans-serif, system-ui;
+  --font-modern-serif: "Playfair Display", Georgia, serif;
+
+  --font-plex-sans: "IBM Plex Sans", ui-sans-serif, system-ui;
+  --font-plex-serif: "IBM Plex Serif", Georgia, serif;
+
+  --font-humanist-sans: "Source Sans 3", ui-sans-serif, system-ui;
+  --font-humanist-serif: "Lora", Georgia, serif;
+}
+
+/* 3. Tailwind source scanning */
 @source "../index.html";
 @source "./**/*.{js,jsx,ts,tsx}";
 
+/* 4. Custom utilities */
 .perspective {
   perspective: 1000px;
-  -webkit-perspective: 1000px;
 }
-
 .preserve-3d {
   transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
 }
-
 .backface-hidden {
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
-
 .rotate-y-180 {
   transform: rotateY(180deg);
-  -webkit-transform: rotateY(180deg);
+}
+
+body {
+  @apply font-humanist-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-humanist-serif;
 }
