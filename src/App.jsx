@@ -17,11 +17,15 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border }
       onMouseLeave={() => setFlipped(false)}
       className="perspective h-64"
     >
-      <div
-        className={`relative preserve-3d duration-700 w-full h-full ${
-          flipped ? "rotate-y-180" : ""
-        }`}
-      >
+     <div
+  className={`relative preserve-3d transform duration-700 w-full h-full ${
+    flipped ? "rotate-y-180" : ""
+  }`}
+>
+
+
+
+
         {/* Front */}
         <div
           className="rounded-2xl shadow-2xl p-6 flex flex-col items-center justify-center text-center relative overflow-hidden w-full h-full font-serif backface-hidden"
