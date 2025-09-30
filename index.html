@@ -2,21 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/src/assets/sbs_logofav.png" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/sbssvglogo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>StepBuyStep — Procurement Made Simple</title>
+
+    <!-- Google Fonts: Lato -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Force body to use Lato -->
+    <style>
+      body {
+        font-family: 'Lato', sans-serif;
+      }
+    </style>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YH9CHMCVX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag() {
+        dataLayer.push(arguments);
+      }
       gtag('js', new Date());
       gtag('config', 'G-4YH9CHMCVX');
     </script>
   </head>
-  <body class="text-[#3A2C28] font-serif bg-[#FCF8F2]">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<body class="text-[#2B2B2B] font-sans bg-[#F3E5C8]">
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+
+
+
 </html>

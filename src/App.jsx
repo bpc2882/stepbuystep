@@ -1,4 +1,4 @@
-import logo from "./assets/sbs_logo.png";
+import Logo from './assets/sbssvglogo.svg';
 import React, { useState } from "react";
 import { Lightbulb, Target, Zap, Briefcase, Users, BookOpen } from "lucide-react";
 import ContactForm from "./ContactForm";
@@ -17,7 +17,7 @@ import {
 
 /* ---------- Shared components ---------- */
 
-/* Highlighted brand name (bold, no extra glow) */
+/* Highlighted brand name */
 const HighlightSBS = () => (
   <span className="inline-flex items-baseline gap-1 align-baseline font-bold">
     <span className="relative top-1">Step</span>
@@ -26,14 +26,14 @@ const HighlightSBS = () => (
   </span>
 );
 
-/* Section title with wide, subtle glow */
+/* Section title */
 const SectionTitle = ({ text }) => {
   const words = text.split(" ");
   const firstWord = words[0];
   const rest = words.slice(1).join(" ");
 
   return (
-    <div className="my-24 text-center max-w-4xl mx-auto relative">
+    <div className="my-16 text-center max-w-4xl mx-auto relative">
       <h2
         className="text-3xl md:text-4xl font-bold tracking-wide mb-6 relative z-10"
         style={{ color: BASE_TEXT_COLOR }}
@@ -47,7 +47,7 @@ const SectionTitle = ({ text }) => {
         )}
       </h2>
 
-      {/* glowing bar behind heading */}
+      {/* glowing bar */}
       <div
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
                    w-[90vw] h-[260px] bg-[#F4B93C] rounded-full 
@@ -61,7 +61,6 @@ const SectionTitle = ({ text }) => {
     </div>
   );
 };
-
 
 /* Flippable box */
 const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, height = "h-64" }) => {
@@ -86,7 +85,6 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, 
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
             boxShadow: SHADOW_STRENGTH,
-            transform: "rotateY(0deg) translateZ(0)",
           }}
         >
           <Icon
@@ -169,63 +167,80 @@ function StepBuyStepPage() {
 
   return (
     <div className="relative overflow-hidden antialiased">
-<header className="relative px-6 md:px-16 pt-10 pb-6 max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between">
-  {/* glowing halo behind header */}
-  <div
-    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
-               w-[95vw] h-[200px] bg-[#F4B93C] rounded-full 
-               blur-[160px] opacity-15 -z-10"
-  ></div>
+      {/* HEADER */}
+      <header className="relative px-6 md:px-16 pt-10 pb-6 max-w-6xl mx-auto">
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 
+                     w-[95vw] h-[200px] bg-[#F4B93C] rounded-full 
+                     blur-[160px] opacity-15 -z-10"
+        ></div>
 
-  <div className="flex justify-center md:justify-start mb-4 md:mb-0">
-    <div className="h-20 md:h-32">
-      <img src={logo} alt="StepBuyStep logo" className="h-full w-auto object-contain" />
-    </div>
-  </div>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div className="flex justify-center md:justify-start mb-4 md:mb-0">
+            <img src={Logo} alt="StepBuyStep logo" style={{ height: "180px" }} />
+          </div>
 
-  {/* Contact Us button */}
-  <a
-    href="#contact"
-    className={`${ROUNDED} px-8 py-4 flex items-center justify-center text-center relative overflow-hidden transform hover:scale-[1.08] transition`}
-    style={{
-      background: makeGradient(contactHSL.h, contactHSL.s, contactHSL.l),
-      color: getTextColor(contactHSL.h, contactHSL.s, contactHSL.l),
-      boxShadow: SHADOW_STRENGTH,
-    }}
-  >
-    Contact Us
-  </a>
-</header>
-      {/* Hero */}
-      <main className="px-6 md:px-10 pb-20 max-w-6xl mx-auto">
-        <div className="pt-10 max-w-4xl mx-auto mb-24">
-          <h1
-            className="text-3xl md:text-[2.4rem] font-bold leading-tight mb-6"
-            style={{ color: BASE_TEXT_COLOR, letterSpacing: "0.03em" }}
-          >
-            Procurement can be difficult — but it doesn’t have to be painful.
-          </h1>
-          <p
-            className="text-lg md:text-xl leading-relaxed"
-            style={{ color: BASE_TEXT_COLOR }}
-          >
-            At <HighlightSBS />, we bring a clear, logical approach to commercial
-            activity. Rooted in problem-solving rather than procedure, we help
-            organisations cut through complexity, focus on outcomes, and make
-            better buying and business decisions with confidence.
-          </p>
+
         </div>
+
+        <div className="w-full mt-4">
+          <div
+            className="h-1 w-full rounded-full max-w-6xl mx-auto"
+            style={{ background: "linear-gradient(to right, #C17E46, #F4B93C)" }}
+          />
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="pt-10 max-w-4xl mx-auto mb-12 text-center">
+        <h1
+          className="text-3xl md:text-[2.6rem] font-bold leading-tight mb-6"
+          style={{ color: BASE_TEXT_COLOR, letterSpacing: "0.03em" }}
+        >
+          Cut procurement costs. No jargon. No fuss.
+        </h1>
+        <p
+          className="text-lg md:text-3xl leading-relaxed mb-4"
+          style={{ color: BASE_TEXT_COLOR }}
+        >
+          <HighlightSBS /> makes procurement simple — save money, save time, and stay in control.
+        </p>
+
+        <a
+          href="#contact"
+          className={`${ROUNDED} inline-block px-20 py-5 mt-6 text-lg font-semibold shadow-lg hover:scale-105 transition`}
+style={{
+  background: "linear-gradient(135deg, #E7622F, #C7461D)", // logo orange
+  color: "#fff",
+  boxShadow: SHADOW_STRENGTH,
+}}
+        >
+          Book a Call
+        </a>
+      </section>
+
+      {/* MAIN CONTENT */}
+      <main className="px-6 md:px-10 pb-20 max-w-6xl mx-auto">
+        {/* INTRO */}
+        <section className="max-w-4xl mx-auto mb-12 px-6 text-justify">
+          <p className="text-lg md:text-xl leading-relaxed" style={{ color: BASE_TEXT_COLOR }}>
+            Procurement can be difficult — but it doesn’t have to be painful. At <HighlightSBS />,
+            we bring a clear, logical approach to commercial activity. Rooted in problem-solving
+            rather than procedure, we help organisations cut through complexity, focus on outcomes,
+            and make better buying and business decisions with confidence.
+          </p>
+        </section>
 
         {/* HOW */}
         <SectionTitle text="How we work" />
-        <div className="mx-auto max-w-4xl grid gap-8 md:grid-cols-3 mb-24">
+        <div className="mx-auto max-w-4xl grid gap-8 md:grid-cols-3 mb-16">
           {howItems.map((item, idx) => {
-            const colors = [
-              { h: 120, s: 25, l: 30 },
-              { h: 30, s: 50, l: 50 },
-              { h: 42, s: 70, l: 48 },
+            const howColors = [
+              { h: 145, s: 45, l: 25 },
+              { h: 42, s: 80, l: 45 },
+              { h: 210, s: 55, l: 30 },
             ];
-            const { h, s, l } = colors[idx % colors.length];
+            const { h, s, l } = howColors[idx % howColors.length];
             const bg = makeGradient(h, s, l);
             const text = getTextColor(h, s, l);
             return <FlippableBox key={idx} {...item} bg={bg} textColor={text} height="h-64" />;
@@ -234,14 +249,14 @@ function StepBuyStepPage() {
 
         {/* WHAT */}
         <SectionTitle text="What we do" />
-        <div className="mx-auto max-w-4xl grid gap-8 md:grid-cols-3 mb-24">
+        <div className="mx-auto max-w-4xl grid gap-8 md:grid-cols-3 mb-16">
           {whatItems.map((item, idx) => {
-            const colors = [
-              { h: 35, s: 60, l: 75 },
-              { h: 100, s: 25, l: 65 },
-              { h: 190, s: 15, l: 65 },
+            const whatColors = [
+              { h: 10, s: 75, l: 38 },
+              { h: 30, s: 35, l: 30 },
+              { h: 55, s: 50, l: 75 },
             ];
-            const { h, s, l } = colors[idx % colors.length];
+            const { h, s, l } = whatColors[idx % whatColors.length];
             const bg = makeGradient(h, s, l);
             const text = getTextColor(h, s, l);
             return <FlippableBox key={idx} {...item} bg={bg} textColor={text} height="h-72" />;
@@ -250,7 +265,7 @@ function StepBuyStepPage() {
 
         {/* ABOUT */}
         <SectionTitle text="About StepBuyStep" />
-        <section id="about" className="max-w-4xl mx-auto mb-24 px-6 text-justify">
+        <section id="about" className="max-w-4xl mx-auto mb-16 px-6 text-justify">
           <p className="leading-relaxed text-lg md:text-xl mb-5" style={{ color: BASE_TEXT_COLOR }}>
             With over 20 years of commercial and procurement experience, <HighlightSBS /> is led by Ben Crow.
             Having worked extensively across both public and private sectors, I bring practical insight into
@@ -264,7 +279,6 @@ function StepBuyStepPage() {
             adaptable, and always outcome-driven.
           </p>
 
-          {/* Find out more button */}
           <Link
             to="/about"
             className={`inline-block mt-6 ${ROUNDED} px-8 py-5 shadow-md hover:scale-105 transition`}
