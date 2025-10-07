@@ -172,7 +172,7 @@ function StepBuyStepPage() {
 
 
         {/* hero text */}
-        <div className="relative flex flex-col md:w-[60%] md:pl-10 -mt-4 py-28 bg-transparent">
+        <div className="relative flex flex-col md:w-[60%] md:pl-10 -mt-4 py-20 sm:py-16 bg-transparent">
           <h1
             className="absolute bottom-0 text-3xl md:text-[2.6rem] font-bold leading-tight mb-4 bg-transparent"
             style={{ color: BASE_TEXT_COLOR }}
