@@ -69,6 +69,7 @@ const MakeALine = ({ className = "", fullWidth = false }) => (
 
 
 
+
 /* ---------- Section Title ---------- */
 const SectionTitle = ({ text }) => {
   const words = text.split(" ");
@@ -174,7 +175,7 @@ function StepBuyStepPage() {
         {/* hero text */}
         <div className="relative flex flex-col md:w-[60%] md:pl-10 -mt-4 py-20 sm:py-16 bg-transparent">
           <h1
-            className="absolute bottom-0 text-3xl md:text-[2.6rem] font-bold leading-tight mb-4 bg-transparent"
+            className="absolute bottom-0 text-2xl sm:text-3xl md:text-[2.6rem] font-bold leading-tight mb-4 pl-6 sm:pl-10 bg-transparent"
             style={{ color: BASE_TEXT_COLOR }}
           >
             <div className="ml-24">Cut procurement costs.</div>
