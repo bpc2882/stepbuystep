@@ -175,70 +175,83 @@ function StepBuyStepPage() {
       style={{ background: MODERN_BG, color: TEXT_COLOR }}
     >
       {/* HEADER (anchored) */}
-      {/* HEADER (anchored) */}
-{/* HEADER (anchored + responsive) */}
-{/* HEADER (anchored, responsive scaling only) */}
-{/* HEADER (anchored) */}
+
+{/* HEADER (proportionally scaling container) */}
 <header
-  className="absolute top-0 left-10 w-full flex justify-between items-start"
+  className="absolute top-0 left-0 w-full flex items-start justify-center"
   style={{
     height: `${HEADER_HEIGHT}rem`,
-    padding: "0 8vw", // 👈 bring both logo & tagline inward equally (~4% on each side)
   }}
 >
-  {/* Logo with glow */}
+  {/* Fixed geometry that scales as one unit */}
   <div
-    className="relative grid place-items-center"
+    className="relative"
     style={{
-      width: `${40 * LOGO_SCALE}%`,
-      height: `${HEADER_HEIGHT * LOGO_SCALE}rem`,
+      width: "85vw",                  // full design width
+      transformOrigin: "top left",    // anchor scaling at top-left
+      scale: "var(--hdr-scale, 1)",   // allows responsive scaling
     }}
   >
+    {/* Original layout preserved verbatim */}
+    {/* Logo box */}
     <div
+      className="absolute top-0 left-15 grid place-items-center"
       style={{
-        position: "absolute",
-        inset: 0,
-        background: `
-          radial-gradient(circle at center,
-            rgba(255,255,245,0.9) 0%,
-            rgba(255,250,210,0.4) 45%,
-            transparent 80%)
-        `,
-        filter: "blur(100px)",
-        opacity: 0.9,
-        zIndex: 0,
+        width: `${40 * LOGO_SCALE}%`,
+        height: `${HEADER_HEIGHT * LOGO_SCALE}rem`,
       }}
-    />
-    <img
-      src={Logo}
-      alt="StepBuyStep logo"
-      className="object-contain relative z-10"
-      style={{
-        maxHeight: "80%",
-        maxWidth: "80%",
-      }}
-    />
-  </div>
+    >
+      {/* Gold glow */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: `
+            radial-gradient(circle at center,
+              rgba(255,255,245,0.9) 0%,
+              rgba(255,250,210,0.4) 45%,
+              transparent 80%)
+          `,
+          filter: "blur(100px)",
+          opacity: 0.9,
+          zIndex: 0,
+        }}
+      />
+      <img
+        src={Logo}
+        alt="StepBuyStep logo"
+        className="object-contain relative z-10"
+        style={{
+          maxHeight: "80%",
+          maxWidth: "80%",
+        }}
+      />
+    </div>
 
-  {/* Tagline */}
-  <div
-    className="font-bold leading-tight text-right"
-    style={{
-      width: `${TAGLINE_WIDTH}vw`,
-      height: `${HEADER_HEIGHT * 0.95}rem`,
-      color: BASE_TEXT_COLOR,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "flex-end",
-      gap: "1.2rem",
-    }}
-  >
-    <div style={{ fontSize: "3.2rem" }}>Cut procurement costs.</div>
-    <div style={{ fontSize: "3rem", transform: "translateX(-240px)" }}>No jargon.</div>
-    <div style={{ fontSize: "3rem", transform: "translateX(-360px)" }}>No fuss.</div>
+    {/* Tagline box */}
+    <div
+      className="absolute top-0 right-0 font-bold leading-tight text-right"
+      style={{
+        width: `${TAGLINE_WIDTH}vw`,
+        height: `${HEADER_HEIGHT * 0.95}rem`,
+        color: BASE_TEXT_COLOR,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-end",
+        gap: "1.2rem",
+      }}
+    >
+      <div style={{ fontSize: "3.2rem" }}>Cut procurement costs.</div>
+      <div style={{ fontSize: "3rem", transform: "translateX(-240px)" }}>No jargon.</div>
+      <div style={{ fontSize: "3rem", transform: "translateX(-360px)" }}>No fuss.</div>
+    </div>
   </div>
 </header>
+
+
+
+
 
 
 
