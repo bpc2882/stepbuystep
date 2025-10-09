@@ -183,12 +183,13 @@ function StepBuyStepPage() {
   className="inline-block px-10 py-4 text-lg font-medium tracking-wide rounded-xl shadow-md transition-all duration-300 hover:scale-[1.04] hover:shadow-lg antialiased"
   style={{
     background: "linear-gradient(135deg, #C17E46 0%, #F4B93C 100%)",
-    color: "#111",
+    color: "#2a1e12",
     boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
   }}
 >
   Book a Call
 </a>
+
 
 
 
