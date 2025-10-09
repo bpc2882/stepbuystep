@@ -178,29 +178,31 @@ function StepBuyStepPage() {
 
 {/* HEADER (proportionally scaling container) */}
 <header
-  className="absolute top-0 left-0 w-full flex items-start justify-center"
+  className="absolute top-0 left-0 w-full flex justify-center items-center"
   style={{
     height: `${HEADER_HEIGHT}rem`,
   }}
 >
-  {/* Scalable container */}
+  {/* Scale wrapper */}
   <div
-    className="relative"
+    className="origin-top scale-[var(--scale)]"
     style={{
-      width: "85vw", // overall layout width
-      transformOrigin: "top left",
-      transform: "scale(var(--hdr-scale, 1))", // ✅ works in Safari + mobile
+      '--scale': '1', // default desktop
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'flex-end',
+      padding: '0 8vw',
+      transformOrigin: 'top center',
     }}
   >
-    {/* Logo box */}
     <div
-      className="absolute top-0 left-0 grid place-items-center"
+      className="relative grid place-items-center"
       style={{
         width: `${40 * LOGO_SCALE}%`,
         height: `${HEADER_HEIGHT * LOGO_SCALE}rem`,
       }}
     >
-      {/* Glow */}
       <div
         style={{
           position: "absolute",
@@ -227,12 +229,10 @@ function StepBuyStepPage() {
       />
     </div>
 
-    {/* Taglines */}
     <div
-      className="absolute top-0 right-0 font-bold leading-tight text-right"
+      className="font-bold leading-tight text-right"
       style={{
         width: `${TAGLINE_WIDTH}vw`,
-        height: `${HEADER_HEIGHT * 0.95}rem`,
         color: BASE_TEXT_COLOR,
         display: "flex",
         flexDirection: "column",
@@ -246,7 +246,23 @@ function StepBuyStepPage() {
       <div style={{ fontSize: "3rem", transform: "translateX(-360px)" }}>No fuss.</div>
     </div>
   </div>
+
+  {/* Simple responsive scale */}
+  <style>
+    {`
+      @media (max-width: 1024px) {
+        header > div { --scale: 0.85; }
+      }
+      @media (max-width: 768px) {
+        header > div { --scale: 0.7; }
+      }
+      @media (max-width: 480px) {
+        header > div { --scale: 0.55; }
+      }
+    `}
+  </style>
 </header>
+
 
 
 
