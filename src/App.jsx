@@ -176,20 +176,24 @@ function StepBuyStepPage() {
     >
       {/* HEADER (anchored) */}
       {/* HEADER (anchored) */}
+{/* HEADER (anchored + responsive) */}
+{/* HEADER (anchored, responsive scaling only) */}
+{/* HEADER (anchored) */}
 <header
-  className="absolute top-0 left-0 w-full bg-transparent"
-  style={{ height: `${HEADER_HEIGHT}rem` }}
+  className="absolute top-0 left-10 w-full flex justify-between items-start"
+  style={{
+    height: `${HEADER_HEIGHT}rem`,
+    padding: "0 8vw", // 👈 bring both logo & tagline inward equally (~4% on each side)
+  }}
 >
-  {/* Logo box with glow */}
+  {/* Logo with glow */}
   <div
-    className="absolute top-0 left-30 grid place-items-center"
+    className="relative grid place-items-center"
     style={{
-      position: "relative",
       width: `${40 * LOGO_SCALE}%`,
       height: `${HEADER_HEIGHT * LOGO_SCALE}rem`,
     }}
   >
-    {/* ✨ Gold glow behind logo */}
     <div
       style={{
         position: "absolute",
@@ -197,7 +201,7 @@ function StepBuyStepPage() {
         background: `
           radial-gradient(circle at center,
             rgba(255,255,245,0.9) 0%,
-            rgba(255,250,210,0.4) 55%,
+            rgba(255,250,210,0.4) 45%,
             transparent 80%)
         `,
         filter: "blur(100px)",
@@ -216,9 +220,9 @@ function StepBuyStepPage() {
     />
   </div>
 
-  {/* Tagline box */}
+  {/* Tagline */}
   <div
-    className="absolute top-0 right-10 font-bold leading-tight text-right"
+    className="font-bold leading-tight text-right"
     style={{
       width: `${TAGLINE_WIDTH}vw`,
       height: `${HEADER_HEIGHT * 0.95}rem`,
@@ -235,6 +239,9 @@ function StepBuyStepPage() {
     <div style={{ fontSize: "3rem", transform: "translateX(-360px)" }}>No fuss.</div>
   </div>
 </header>
+
+
+
 
 
       {/* MAIN CONTENT */}
