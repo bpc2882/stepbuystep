@@ -20,30 +20,32 @@
 @media (max-width: 700px) {
   header {
     flex-direction: column !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     height: auto !important;
-    padding-top: 3rem !important;
+    padding-top: 1.5rem !important; /* closer to top */
+    padding-left: 8vw !important;
   }
 
   header img {
-    max-width: 55vw !important;
+    max-width: 48vw !important;
     height: auto !important;
-    margin-bottom: 1.8rem !important;
+    margin-bottom: 1rem !important;
   }
 
   header .font-bold {
-    text-align: left !important; /* 👈 keep the stepped look */
-    transform: none !important;
+    text-align: left !important;
     width: auto !important;
+    transform: none !important;
+    margin-top: 0 !important;
   }
 
   header .font-bold div {
-    font-size: 2rem !important;
-    line-height: 1.1 !important;
-    margin: 0.2rem 0 !important;
+    font-size: 2.1rem !important;
+    line-height: 1.15 !important;
+    margin: 0.25rem 0 !important;
   }
 
-  /* 👇 Step offsets, scaled-down */
+  /* ✅ Step offsets for all three lines */
   header .font-bold div:nth-child(1) {
     transform: translateX(0) !important;
   }
