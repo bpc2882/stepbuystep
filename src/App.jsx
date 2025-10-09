@@ -18,16 +18,15 @@ import {
 /* ---------- Layout constants ---------- */
 const MODERN_BG = "linear-gradient(180deg, #CBBCA7 0%, #B2A28E 100%)";
 const TEXT_COLOR = "#222";
-const HEADER_HEIGHT = 30;     // base height in rem
+const HEADER_HEIGHT = 30;            // rem (design height before scaling)
+const DESIGN_WIDTH = 1200;           // px (desktop design width)
 const LOGO_SCALE = 1.0;
-const TAGLINE_WIDTH = 58;     // in vw
+const TAGLINE_WIDTH_PX = 0.58 * DESIGN_WIDTH; // 58% of 1200px → 696px
 const PAGE_WIDTH = "75rem";
 const DEBUG = false;
 
 /* ---------- Debug borders ---------- */
-const debugBorders = DEBUG
-  ? "[&_*]:border [&_*]:border-dashed [&_*]:border-green-400"
-  : "";
+const debugBorders = DEBUG ? "[&_*]:border [&_*]:border-dashed [&_*]:border-green-400" : "";
 
 /* ---------- Shared paragraph style ---------- */
 const BodyText = ({ children, className = "" }) => (
@@ -44,11 +43,7 @@ function generateShades(baseH, baseS, baseL, count = 3) {
   const deltaH = 20, deltaS = 20, deltaL = 14;
   return Array.from({ length: count }, (_, i) => {
     const pos = i - Math.floor(count / 2);
-    return {
-      h: baseH + pos * deltaH,
-      s: baseS - Math.abs(pos) * deltaS,
-      l: baseL + pos * deltaL,
-    };
+    return { h: baseH + pos * deltaH, s: baseS - Math.abs(pos) * deltaS, l: baseL + pos * deltaL };
   });
 }
 
@@ -64,7 +59,7 @@ const HighlightSBS = () => (
 /* ---------- Decorative line ---------- */
 const MakeALine = ({ className = "", fullWidth = false }) => (
   <div
-    className={`relative ${fullWidth ? "w-[95vw]" : "w-full*1.2"} mx-auto my-12 ${className}`}
+    className={`relative ${fullWidth ? "w-[95vw]" : "w-full"} mx-auto my-12 ${className}`}
     style={{
       background: `
         radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 35%, transparent 70%),
@@ -78,22 +73,11 @@ const MakeALine = ({ className = "", fullWidth = false }) => (
 
 /* ---------- Section title ---------- */
 const SectionTitle = ({ text }) => {
-  const words = text.split(" ");
-  const firstWord = words[0];
-  const rest = words.slice(1).join(" ");
+  const [firstWord, ...rest] = text.split(" ");
   return (
     <div className="mt-8 mb-12 text-center w-full mx-auto relative">
-      <h2
-        className="text-3xl md:text-4xl font-bold tracking-wide mb-6 relative z-10"
-        style={{ color: BASE_TEXT_COLOR }}
-      >
-        {text.includes("StepBuyStep") ? (
-          <HighlightSBS />
-        ) : (
-          <>
-            <span className="italic">{firstWord}</span> {rest}
-          </>
-        )}
+      <h2 className="text-3xl md:text-4xl font-bold tracking-wide mb-6 relative z-10" style={{ color: BASE_TEXT_COLOR }}>
+        {text.includes("StepBuyStep") ? <HighlightSBS /> : (<><span className="italic">{firstWord}</span> {rest.join(" ")}</>)}
       </h2>
       <MakeALine className="mt-4" />
     </div>
@@ -104,44 +88,18 @@ const SectionTitle = ({ text }) => {
 const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, height = "h-64" }) => {
   const [flipped, setFlipped] = useState(false);
   return (
-    <div
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-      className={`relative w-full ${height} perspective`}
-      style={{ perspective: "1000px" }}
-    >
-      <div
-        className={`relative w-full h-full duration-700 transform ${flipped ? "rotate-y-180" : ""}`}
-        style={{ transformStyle: "preserve-3d" }}
-      >
+    <div onMouseEnter={() => setFlipped(true)} onMouseLeave={() => setFlipped(false)} className={`relative w-full ${height}`} style={{ perspective: "1000px" }}>
+      <div className={`relative w-full h-full duration-700 transform ${flipped ? "rotate-y-180" : ""}`} style={{ transformStyle: "preserve-3d" }}>
         {/* FRONT */}
-        <div
-          className={`absolute inset-0 ${ROUNDED} p-6 flex flex-col items-center justify-center text-center`}
-          style={{
-            backfaceVisibility: "hidden",
-            background: bg,
-            color: textColor,
-            border: border ? `2px solid ${border}` : "none",
-            boxShadow: SHADOW_STRENGTH,
-          }}
-        >
+        <div className={`absolute inset-0 ${ROUNDED} p-6 flex flex-col items-center justify-center text-center`}
+          style={{ backfaceVisibility: "hidden", background: bg, color: textColor, border: border ? `2px solid ${border}` : "none", boxShadow: SHADOW_STRENGTH }}>
           <Icon className="absolute inset-0 m-auto w-3/4 h-3/4 opacity-20" style={{ color: textColor }} />
           <h3 className="text-2xl font-bold mb-4 tracking-wide relative z-10 leading-snug">{title}</h3>
           <p className="font-medium text-lg leading-relaxed relative z-10 mt-2">{text}</p>
         </div>
-
         {/* BACK */}
-        <div
-          className={`absolute inset-0 ${ROUNDED} p-6 flex items-center justify-center text-center`}
-          style={{
-            backfaceVisibility: "hidden",
-            background: bg,
-            color: textColor,
-            border: border ? `2px solid ${border}` : "none",
-            boxShadow: SHADOW_STRENGTH,
-            transform: "rotateY(180deg)",
-          }}
-        >
+        <div className={`absolute inset-0 ${ROUNDED} p-6 flex items-center justify-center text-center`}
+          style={{ backfaceVisibility: "hidden", background: bg, color: textColor, border: border ? `2px solid ${border}` : "none", boxShadow: SHADOW_STRENGTH, transform: "rotateY(180deg)" }}>
           <p className="font-medium text-lg leading-relaxed">{detail}</p>
         </div>
       </div>
@@ -149,30 +107,32 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, 
   );
 };
 
-/* ---------- Main Page ---------- */
+/* ---------- Page ---------- */
 function StepBuyStepPage() {
   return (
     <div
       className={`relative overflow-hidden antialiased min-h-screen ${debugBorders}`}
-      style={{ background: MODERN_BG, color: TEXT_COLOR }}
+      style={{
+        background: MODERN_BG,
+        color: TEXT_COLOR,
+        /* Shared scale variable (unitless): ratio of viewport to 1200px, capped at 1 */
+        ["--scale"]: "min(100vw / 1200px, 1)",
+      }}
     >
-      {/* HEADER (anchored, scalable) */}
+      {/* HEADER (absolute, uniformly scaled; uses px inside so proportions never change) */}
       <header
-        className="absolute top-0 left-10 w-full flex justify-between items-start origin-top"
+        className="absolute top-0 left-0 w-full flex justify-between items-start origin-top"
         style={{
           height: `${HEADER_HEIGHT}rem`,
-          padding: "0 8vw",
-          transform: "scale(min(100vw / 1200, 1))",
+          padding: "0 96px",                       // 8vw at 1200px -> fixed px for uniform scaling
+          transform: "scale(var(--scale))",
           transformOrigin: "top left",
         }}
       >
         {/* Logo with glow */}
         <div
           className="relative grid place-items-center"
-          style={{
-            width: `${40 * LOGO_SCALE}%`,
-            height: `${HEADER_HEIGHT * LOGO_SCALE}rem`,
-          }}
+          style={{ width: `${40 * LOGO_SCALE}%`, height: `${HEADER_HEIGHT * LOGO_SCALE}rem` }}
         >
           <div
             style={{
@@ -189,19 +149,14 @@ function StepBuyStepPage() {
               zIndex: 0,
             }}
           />
-          <img
-            src={Logo}
-            alt="StepBuyStep logo"
-            className="object-contain relative z-10"
-            style={{ maxHeight: "80%", maxWidth: "80%" }}
-          />
+          <img src={Logo} alt="StepBuyStep logo" className="object-contain relative z-10" style={{ maxHeight: "80%", maxWidth: "80%" }} />
         </div>
 
-        {/* Tagline */}
+        {/* Tagline (fixed design width in px so header truly scales as a unit) */}
         <div
           className="font-bold leading-tight text-right"
           style={{
-            width: `${TAGLINE_WIDTH}vw`,
+            width: `${TAGLINE_WIDTH_PX}px`,                // fixed design width
             height: `${HEADER_HEIGHT * 0.95}rem`,
             color: BASE_TEXT_COLOR,
             display: "flex",
@@ -217,20 +172,16 @@ function StepBuyStepPage() {
         </div>
       </header>
 
+      {/* Spacer that reserves the exact scaled header height (prevents overlap on mobile) */}
+      <div aria-hidden className="w-full" style={{ height: `calc(${HEADER_HEIGHT}rem * var(--scale))` }} />
+
       {/* MAIN CONTENT */}
       <main
         className="relative z-20 pb-20 mx-auto"
-        style={{
-          marginTop: `${HEADER_HEIGHT}rem`,
-          maxWidth: PAGE_WIDTH,
-          padding: "0 2rem",
-        }}
+        style={{ maxWidth: PAGE_WIDTH, padding: "0 2rem" }}
       >
         <MakeALine className="mx-auto mt-6 mb-8" />
-        <p
-          className="text-lg md:text-3xl leading-relaxed mt-1 mb-4 text-center"
-          style={{ color: BASE_TEXT_COLOR }}
-        >
+        <p className="text-lg md:text-3xl leading-relaxed mt-1 mb-4 text-center" style={{ color: BASE_TEXT_COLOR }}>
           <HighlightSBS /> makes procurement simple — save money, save time, and stay in control.
         </p>
 
@@ -256,10 +207,9 @@ function StepBuyStepPage() {
         <section className="text-justify mb-12">
           <BodyText>
             Procurement can be difficult — but it doesn’t have to be painful. Whether you’re a buyer
-            trying to deliver value and stay compliant, or a supplier aiming to win more work,{" "}
-            <HighlightSBS /> brings a clear, logical approach to commercial activity. Rooted in
-            problem-solving rather than procedure, we help organisations cut through complexity,
-            focus on outcomes, and make better buying and business decisions with confidence.
+            trying to deliver value and stay compliant, or a supplier aiming to win more work, <HighlightSBS /> brings a clear,
+            logical approach to commercial activity. Rooted in problem-solving rather than procedure, we help organisations
+            cut through complexity, focus on outcomes, and make better buying and business decisions with confidence.
           </BodyText>
         </section>
 
@@ -267,36 +217,16 @@ function StepBuyStepPage() {
 
         {/* Services */}
         <section className="relative grid md:grid-cols-2 gap-10 mt-10">
-          <div
-            className="hidden md:block absolute left-1/2 top-0 h-full w-[3px] rounded-full"
-            style={{ background: "linear-gradient(to bottom, #C17E46, #F4B93C)" }}
-          />
+          <div className="hidden md:block absolute left-1/2 top-0 h-full w-[3px] rounded-full" style={{ background: "linear-gradient(to bottom, #C17E46, #F4B93C)" }} />
 
           {/* Buyers */}
           <div className="space-y-8 p-10">
             <h3 className="text-2xl font-bold text-center text-[#0B1E3F]">...for Buyers</h3>
             {generateShades(210, 70, 40, 3).map((color, idx) => {
               const item = [
-                {
-                  icon: Briefcase,
-                  title: "Procurement Support",
-                  text: "Flexible, outcome-focused help for your buying projects.",
-                  detail:
-                    "Templates, evaluation, moderation — all streamlined for clarity and compliance.",
-                },
-                {
-                  icon: Users,
-                  title: "Consultancy",
-                  text: "Commercial strategy and category planning that work.",
-                  detail: "Spend and risk analysis with practical implementation support.",
-                },
-                {
-                  icon: BookOpen,
-                  title: "Training",
-                  text: "Upskilling teams with short, targeted learning.",
-                  detail:
-                    "Workshops covering evaluation, negotiation, and new Procurement Act essentials.",
-                },
+                { icon: Briefcase, title: "Procurement Support", text: "Flexible, outcome-focused help for your buying projects.", detail: "Templates, evaluation, moderation — all streamlined for clarity and compliance." },
+                { icon: Users, title: "Consultancy", text: "Commercial strategy and category planning that work.", detail: "Spend and risk analysis with practical implementation support." },
+                { icon: BookOpen, title: "Training", text: "Upskilling teams with short, targeted learning.", detail: "Workshops covering evaluation, negotiation, and new Procurement Act essentials." },
               ][idx];
               const bg = makeGradient(color.h, color.s, color.l);
               return <FlippableBox key={idx} {...item} bg={bg} textColor="#FFFFFF" height="h-64" />;
@@ -308,24 +238,9 @@ function StepBuyStepPage() {
             <h3 className="text-2xl font-bold text-center text-[#0B1E3F]">...for Suppliers</h3>
             {generateShades(40, 80, 60, 3).map((color, idx) => {
               const item = [
-                {
-                  icon: Target,
-                  title: "Bid Writing",
-                  text: "Win more tenders with structured, evaluator-friendly answers.",
-                  detail: "We help shape responses, clarify evidence, and improve quality scores.",
-                },
-                {
-                  icon: Lightbulb,
-                  title: "Consultancy",
-                  text: "Build readiness for frameworks and DPS opportunities.",
-                  detail: "Gap analysis, compliance checks, and go-to-market strategy.",
-                },
-                {
-                  icon: Zap,
-                  title: "Brokerage",
-                  text: "Connecting local SMEs with buyers.",
-                  detail: "Free brokerage for Lincolnshire SMEs — supplier-pays on success.",
-                },
+                { icon: Target, title: "Bid Writing", text: "Win more tenders with structured, evaluator-friendly answers.", detail: "We help shape responses, clarify evidence, and improve quality scores." },
+                { icon: Lightbulb, title: "Consultancy", text: "Build readiness for frameworks and DPS opportunities.", detail: "Gap analysis, compliance checks, and go-to-market strategy." },
+                { icon: Zap, title: "Brokerage", text: "Connecting local SMEs with buyers.", detail: "Free brokerage for Lincolnshire SMEs — supplier-pays on success." },
               ][idx];
               const bg = makeGradient(color.h, color.s, color.l);
               return <FlippableBox key={idx} {...item} bg={bg} textColor="#3B2F12" height="h-64" />;
@@ -339,24 +254,18 @@ function StepBuyStepPage() {
         <section id="about" className="mb-16 text-justify">
           <BodyText>
             With over 20 years of commercial and procurement experience, <HighlightSBS /> is led by
-            Ben Crow. Having worked extensively across both public and private sectors, I bring
-            practical insight into how organisations can deliver outcomes effectively while staying
-            compliant with the Procurement Act and wider regulatory framework.
+            Ben Crow. Having worked across public and private sectors, I bring practical insight into delivering outcomes effectively
+            while staying compliant with the Procurement Act and wider regulatory framework.
           </BodyText>
           <BodyText>
-            My focus has always been problem-solving: helping organisations cut through complexity,
-            overcome obstacles, and achieve results with confidence. Whether it’s procurement
-            strategy, commercial advice, or team training, <HighlightSBS /> offers support that is
-            pragmatic, adaptable, and always outcome-driven.
+            My focus has always been problem-solving: helping organisations cut through complexity, overcome obstacles, and achieve
+            results with confidence. Whether it’s procurement strategy, commercial advice, or team training, <HighlightSBS /> offers
+            support that is pragmatic, adaptable, and always outcome-driven.
           </BodyText>
           <Link
             to="/about"
             className={`inline-block mt-6 ${ROUNDED} px-8 py-5 shadow-md hover:scale-105 transition`}
-            style={{
-              background: makeGradient(aboutHSL.h, aboutHSL.s, aboutHSL.l),
-              color: getTextColor(aboutHSL.h, aboutHSL.s, aboutHSL.l),
-              boxShadow: SHADOW_STRENGTH,
-            }}
+            style={{ background: makeGradient(aboutHSL.h, aboutHSL.s, aboutHSL.l), color: getTextColor(aboutHSL.h, aboutHSL.s, aboutHSL.l), boxShadow: SHADOW_STRENGTH }}
           >
             Find out more
           </Link>
@@ -365,11 +274,7 @@ function StepBuyStepPage() {
         <SectionTitle text="Contact Us" />
 
         {/* Contact */}
-        <section
-          id="contact"
-          className={`${ROUNDED} backdrop-blur shadow-md p-8`}
-          style={{ backgroundColor: "#F6EFE7", color: BASE_TEXT_COLOR }}
-        >
+        <section id="contact" className={`${ROUNDED} backdrop-blur shadow-md p-8`} style={{ backgroundColor: "#F6EFE7", color: BASE_TEXT_COLOR }}>
           <ContactForm />
         </section>
       </main>
