@@ -21,15 +21,16 @@
   header {
     flex-direction: column !important;
     align-items: flex-start !important;
+    justify-content: flex-start !important;
     height: auto !important;
-    padding-top: 1.5rem !important; /* closer to top */
-    padding-left: 8vw !important;
+    padding-top: 0.8rem !important; /* tighter to top */
+    padding-left: 6vw !important;   /* small side inset */
   }
 
   header img {
-    max-width: 48vw !important;
+    max-width: 45vw !important;
     height: auto !important;
-    margin-bottom: 1rem !important;
+    margin-bottom: 0.8rem !important; /* closer to taglines */
   }
 
   header .font-bold {
@@ -40,19 +41,20 @@
   }
 
   header .font-bold div {
-    font-size: 2.1rem !important;
-    line-height: 1.15 !important;
+    font-size: 1.9rem !important;
+    line-height: 1.1 !important;
     margin: 0.25rem 0 !important;
   }
 
-  /* ✅ Step offsets for all three lines */
+  /* ✅ stepped alignment that scales with screen width */
   header .font-bold div:nth-child(1) {
     transform: translateX(0) !important;
   }
   header .font-bold div:nth-child(2) {
-    transform: translateX(-60px) !important;
+    transform: translateX(-7vw) !important;
   }
   header .font-bold div:nth-child(3) {
-    transform: translateX(-120px) !important;
+    transform: translateX(-14vw) !important;
   }
 }
+
