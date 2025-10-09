@@ -122,11 +122,36 @@ function StepBuyStepPage() {
 
 <header className="max-w-[80rem] mx-auto flex justify-left bg-[#CBBCA7] min-h-[20rem]">
   
+<div className="relative flex items-center justify-center self-start mr-auto overflow-visible">
+  {/* Balanced warm glow */}
+  <div
+    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[135%] h-[135%] rounded-full pointer-events-none z-0"
+    style={{
+      background: `
+        radial-gradient(circle at center,
+          rgba(255,245,210,0.68) 0%,
+          rgba(255,225,150,0.45) 35%,
+          rgba(203,188,167,0.18) 70%,
+          rgba(203,188,167,0) 100%)
+      `,
+      filter: "blur(60px)",
+    }}
+  />
   <img
     src={Logo}
     alt="Step Buy Step logo"
-className="h-[30rem] sm:h-[25rem] md:h-[20rem] w-auto object-contain self-start mr-auto"
+    className="relative z-10 h-[30rem] sm:h-[25rem] md:h-[20rem] w-auto object-contain"
   />
+</div>
+
+
+
+
+
+
+
+
+
     <div className="flex flex-col justify-end w-full">
 <p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[10%] sm:ml-[25%] md:ml-[40%] font-bold leading-tight">
   Cut procurement costs.
@@ -153,20 +178,20 @@ className="h-[30rem] sm:h-[25rem] md:h-[20rem] w-auto object-contain self-start 
 
         {/* CTA */}
         <div className="flex justify-center mt-8 mb-10">
-          <a
-            href="#contact"
-            className={`${ROUNDED} inline-block px-20 py-5 text-lg font-semibold shadow-lg hover:scale-105 transition`}
-            style={{
-              background: `
-                radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.25) 35%, transparent 70%),
-                linear-gradient(to right, #C17E46, #F4B93C)
-              `,
-              color: "#000",
-              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-            }}
-          >
-            Book a Call
-          </a>
+<a
+  href="#contact"
+  className="inline-block px-10 py-4 text-lg font-medium tracking-wide rounded-xl shadow-md transition-all duration-300 hover:scale-[1.04] hover:shadow-lg antialiased"
+  style={{
+    background: "linear-gradient(135deg, #C17E46 0%, #F4B93C 100%)",
+    color: "#111",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+  }}
+>
+  Book a Call
+</a>
+
+
+
         </div>
 
         {/* Intro */}
