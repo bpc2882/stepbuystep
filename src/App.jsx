@@ -121,29 +121,23 @@ function StepBuyStepPage() {
     >
 
 <header className="max-w-[80rem] mx-auto flex justify-left bg-[#CBBCA7] min-h-[20rem]">
-  <div
-    className="flex items-center justify-center h-full"
-    style={{
-    background: `
-      radial-gradient(circle at 50% 35%,
-        rgba(255,255,245,0.55) 0%,
-        rgba(255,250,210,0.2) 45%,
-        rgba(203,188,167,0.08) 75%,
-        rgba(203,188,167,1) 100%)
-      `,
-      filter: "blur(0px)", // adjust to taste
-    }}
-  >
-    <img
-      src={Logo}
-      alt="Step Buy Step logo"
-      className="h-full max-h-[30rem] w-auto object-contain"
-    />
-  </div>
+  
+  <img
+    src={Logo}
+    alt="Step Buy Step logo"
+    className="h-[14rem] sm:h-[16rem] md:h-[18rem] max-h-[20rem] h-full w-auto object-contain self-start mr-auto"
+  />
     <div className="flex flex-col justify-end w-full">
-      <p className="text-[2.5rem] ml-[40%] font-bold leading-tight">Cut procurement costs.</p>
-      <p className="text-[2.5rem] ml-[20%] font-bold leading-tight">No jargon.</p>
-      <p className="text-[2.5rem] ml-[0%] font-bold leading-tight">No fuss.</p>
+<p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[10%] sm:ml-[25%] md:ml-[40%] font-bold leading-tight">
+  Cut procurement costs.
+</p>
+<p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[5%] sm:ml-[15%] md:ml-[20%] font-bold leading-tight">
+  No jargon.
+</p>
+<p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[0%] font-bold leading-tight">
+  No fuss.
+</p>
+
     </div>
 </header>
 
