@@ -125,7 +125,7 @@ function StepBuyStepPage() {
   <img
     src={Logo}
     alt="Step Buy Step logo"
-    className="h-[14rem] sm:h-[16rem] md:h-[18rem] max-h-[20rem] h-full w-auto object-contain self-start mr-auto"
+    className="h-[20rem] sm:h-[20rem] md:h-[20rem] max-h-[20rem] h-full w-auto object-contain self-start mr-auto"
   />
     <div className="flex flex-col justify-end w-full">
 <p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[10%] sm:ml-[25%] md:ml-[40%] font-bold leading-tight">
