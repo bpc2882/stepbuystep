@@ -183,25 +183,24 @@ function StepBuyStepPage() {
     height: `${HEADER_HEIGHT}rem`,
   }}
 >
-  {/* Fixed geometry that scales as one unit */}
+  {/* Scalable container */}
   <div
     className="relative"
     style={{
-      width: "85vw",                  // full design width
-      transformOrigin: "top left",    // anchor scaling at top-left
-      scale: "var(--hdr-scale, 1)",   // allows responsive scaling
+      width: "85vw", // overall layout width
+      transformOrigin: "top left",
+      transform: "scale(var(--hdr-scale, 1))", // ✅ works in Safari + mobile
     }}
   >
-    {/* Original layout preserved verbatim */}
     {/* Logo box */}
     <div
-      className="absolute top-0 left-15 grid place-items-center"
+      className="absolute top-0 left-0 grid place-items-center"
       style={{
         width: `${40 * LOGO_SCALE}%`,
         height: `${HEADER_HEIGHT * LOGO_SCALE}rem`,
       }}
     >
-      {/* Gold glow */}
+      {/* Glow */}
       <div
         style={{
           position: "absolute",
@@ -228,7 +227,7 @@ function StepBuyStepPage() {
       />
     </div>
 
-    {/* Tagline box */}
+    {/* Taglines */}
     <div
       className="absolute top-0 right-0 font-bold leading-tight text-right"
       style={{
@@ -248,6 +247,7 @@ function StepBuyStepPage() {
     </div>
   </div>
 </header>
+
 
 
 
