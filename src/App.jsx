@@ -15,16 +15,16 @@ import {
   aboutHSL,
 } from "./theme";
 
+/* ---------- Layout constants ---------- */
 const MODERN_BG = "linear-gradient(180deg, #CBBCA7 0%, #B2A28E 100%)";
 const TEXT_COLOR = "#222";
-
-/* ---------- Layout scaling controls ---------- */
 const HEADER_HEIGHT = 30;     // base height in rem
-const LOGO_SCALE = 1.0;       // logo size multiplier
-const TAGLINE_WIDTH = 58;     // tagline box width in vw
-const PAGE_WIDTH = "75rem";   // 👈 master content width (~1200px)
+const LOGO_SCALE = 1.0;
+const TAGLINE_WIDTH = 58;     // in vw
+const PAGE_WIDTH = "75rem";
 const DEBUG = false;
 
+/* ---------- Debug borders ---------- */
 const debugBorders = DEBUG
   ? "[&_*]:border [&_*]:border-dashed [&_*]:border-green-400"
   : "";
@@ -41,9 +41,7 @@ const BodyText = ({ children, className = "" }) => (
 
 /* ---------- Utility: harmonic colour variants ---------- */
 function generateShades(baseH, baseS, baseL, count = 3) {
-  const deltaH = 20;
-  const deltaS = 20;
-  const deltaL = 14;
+  const deltaH = 20, deltaS = 20, deltaL = 14;
   return Array.from({ length: count }, (_, i) => {
     const pos = i - Math.floor(count / 2);
     return {
@@ -54,7 +52,7 @@ function generateShades(baseH, baseS, baseL, count = 3) {
   });
 }
 
-/* ---------- Shared components ---------- */
+/* ---------- Highlight brand ---------- */
 const HighlightSBS = () => (
   <span className="inline-flex items-baseline gap-1 align-baseline font-bold">
     <span className="relative top-1">Step</span>
@@ -63,7 +61,7 @@ const HighlightSBS = () => (
   </span>
 );
 
-/* ---------- MakeALine ---------- */
+/* ---------- Decorative line ---------- */
 const MakeALine = ({ className = "", fullWidth = false }) => (
   <div
     className={`relative ${fullWidth ? "w-[95vw]" : "w-full*1.2"} mx-auto my-12 ${className}`}
@@ -78,7 +76,7 @@ const MakeALine = ({ className = "", fullWidth = false }) => (
   />
 );
 
-/* ---------- Section Title ---------- */
+/* ---------- Section title ---------- */
 const SectionTitle = ({ text }) => {
   const words = text.split(" ");
   const firstWord = words[0];
@@ -102,7 +100,7 @@ const SectionTitle = ({ text }) => {
   );
 };
 
-/* ---------- FlippableBox ---------- */
+/* ---------- Flippable service boxes ---------- */
 const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, height = "h-64" }) => {
   const [flipped, setFlipped] = useState(false);
   return (
@@ -110,39 +108,25 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, 
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
       className={`relative w-full ${height} perspective`}
-      style={{
-        perspective: "1000px",
-        WebkitPerspective: "1000px", // ✅ Safari
-      }}
+      style={{ perspective: "1000px" }}
     >
       <div
-        className={`relative w-full h-full duration-700 transform ${
-          flipped ? "rotate-y-180" : ""
-        }`}
-        style={{
-          transformStyle: "preserve-3d",
-          WebkitTransformStyle: "preserve-3d", // ✅ Safari
-        }}
+        className={`relative w-full h-full duration-700 transform ${flipped ? "rotate-y-180" : ""}`}
+        style={{ transformStyle: "preserve-3d" }}
       >
         {/* FRONT */}
         <div
           className={`absolute inset-0 ${ROUNDED} p-6 flex flex-col items-center justify-center text-center`}
           style={{
             backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden", // ✅ Safari
             background: bg,
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
             boxShadow: SHADOW_STRENGTH,
           }}
         >
-          <Icon
-            className="absolute inset-0 m-auto w-3/4 h-3/4 opacity-20"
-            style={{ color: textColor, mixBlendMode: "overlay" }}
-          />
-          <h3 className="text-2xl font-bold mb-4 tracking-wide relative z-10 leading-snug">
-            {title}
-          </h3>
+          <Icon className="absolute inset-0 m-auto w-3/4 h-3/4 opacity-20" style={{ color: textColor }} />
+          <h3 className="text-2xl font-bold mb-4 tracking-wide relative z-10 leading-snug">{title}</h3>
           <p className="font-medium text-lg leading-relaxed relative z-10 mt-2">{text}</p>
         </div>
 
@@ -151,7 +135,6 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, 
           className={`absolute inset-0 ${ROUNDED} p-6 flex items-center justify-center text-center`}
           style={{
             backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden", // ✅ Safari
             background: bg,
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
@@ -166,112 +149,73 @@ const FlippableBox = ({ icon: Icon, title, text, detail, bg, textColor, border, 
   );
 };
 
-
-/* ---------- Page ---------- */
+/* ---------- Main Page ---------- */
 function StepBuyStepPage() {
   return (
     <div
       className={`relative overflow-hidden antialiased min-h-screen ${debugBorders}`}
       style={{ background: MODERN_BG, color: TEXT_COLOR }}
     >
-      {/* HEADER (anchored) */}
-
-{/* HEADER (proportionally scaling container) */}
-<header
-  className="absolute top-0 left-0 w-full flex justify-center items-center"
-  style={{
-    height: `${HEADER_HEIGHT}rem`,
-  }}
->
-  {/* Scale wrapper */}
-  <div
-    className="origin-top scale-[var(--scale)]"
-    style={{
-      '--scale': '1', // default desktop
-      width: '100%',
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'flex-end',
-      padding: '0 8vw',
-      transformOrigin: 'top center',
-    }}
-  >
-    <div
-      className="relative grid place-items-center"
-      style={{
-        width: `${40 * LOGO_SCALE}%`,
-        height: `${HEADER_HEIGHT * LOGO_SCALE}rem`,
-      }}
-    >
-      <div
+      {/* HEADER (anchored, scalable) */}
+      <header
+        className="absolute top-0 left-10 w-full flex justify-between items-start origin-top"
         style={{
-          position: "absolute",
-          inset: 0,
-          background: `
-            radial-gradient(circle at center,
-              rgba(255,255,245,0.9) 0%,
-              rgba(255,250,210,0.4) 45%,
-              transparent 80%)
-          `,
-          filter: "blur(100px)",
-          opacity: 0.9,
-          zIndex: 0,
+          height: `${HEADER_HEIGHT}rem`,
+          padding: "0 8vw",
+          transform: "scale(min(100vw / 1200, 1))",
+          transformOrigin: "top left",
         }}
-      />
-      <img
-        src={Logo}
-        alt="StepBuyStep logo"
-        className="object-contain relative z-10"
-        style={{
-          maxHeight: "80%",
-          maxWidth: "80%",
-        }}
-      />
-    </div>
+      >
+        {/* Logo with glow */}
+        <div
+          className="relative grid place-items-center"
+          style={{
+            width: `${40 * LOGO_SCALE}%`,
+            height: `${HEADER_HEIGHT * LOGO_SCALE}rem`,
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: `
+                radial-gradient(circle at center,
+                  rgba(255,255,245,0.9) 0%,
+                  rgba(255,250,210,0.4) 45%,
+                  transparent 80%)
+              `,
+              filter: "blur(100px)",
+              opacity: 0.9,
+              zIndex: 0,
+            }}
+          />
+          <img
+            src={Logo}
+            alt="StepBuyStep logo"
+            className="object-contain relative z-10"
+            style={{ maxHeight: "80%", maxWidth: "80%" }}
+          />
+        </div>
 
-    <div
-      className="font-bold leading-tight text-right"
-      style={{
-        width: `${TAGLINE_WIDTH}vw`,
-        color: BASE_TEXT_COLOR,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        gap: "1.2rem",
-      }}
-    >
-      <div style={{ fontSize: "3.2rem" }}>Cut procurement costs.</div>
-      <div style={{ fontSize: "3rem", transform: "translateX(-240px)" }}>No jargon.</div>
-      <div style={{ fontSize: "3rem", transform: "translateX(-360px)" }}>No fuss.</div>
-    </div>
-  </div>
-
-  {/* Simple responsive scale */}
-  <style>
-    {`
-      @media (max-width: 1024px) {
-        header > div { --scale: 0.85; }
-      }
-      @media (max-width: 768px) {
-        header > div { --scale: 0.7; }
-      }
-      @media (max-width: 480px) {
-        header > div { --scale: 0.55; }
-      }
-    `}
-  </style>
-</header>
-
-
-
-
-
-
-
-
-
-
+        {/* Tagline */}
+        <div
+          className="font-bold leading-tight text-right"
+          style={{
+            width: `${TAGLINE_WIDTH}vw`,
+            height: `${HEADER_HEIGHT * 0.95}rem`,
+            color: BASE_TEXT_COLOR,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            gap: "1.2rem",
+          }}
+        >
+          <div style={{ fontSize: "3.2rem" }}>Cut procurement costs.</div>
+          <div style={{ fontSize: "3rem", transform: "translateX(-240px)" }}>No jargon.</div>
+          <div style={{ fontSize: "3rem", transform: "translateX(-360px)" }}>No fuss.</div>
+        </div>
+      </header>
 
       {/* MAIN CONTENT */}
       <main
@@ -282,7 +226,6 @@ function StepBuyStepPage() {
           padding: "0 2rem",
         }}
       >
-        {/* Tagline + CTA */}
         <MakeALine className="mx-auto mt-6 mb-8" />
         <p
           className="text-lg md:text-3xl leading-relaxed mt-1 mb-4 text-center"
@@ -291,25 +234,23 @@ function StepBuyStepPage() {
           <HighlightSBS /> makes procurement simple — save money, save time, and stay in control.
         </p>
 
-<div className="flex justify-center mt-8 mb-10">
-  <a
-    href="#contact"
-    className={`${ROUNDED} inline-block px-20 py-5 text-lg font-semibold shadow-lg hover:scale-105 transition`}
-    style={{
-      background: `
-        radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.25) 35%, transparent 70%),
-        linear-gradient(to right, #C17E46, #F4B93C)
-      `,
-      color: "#000",
-      boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-    }}
-  >
-    Book a Call
-  </a>
-</div>
-
-
-
+        {/* CTA */}
+        <div className="flex justify-center mt-8 mb-10">
+          <a
+            href="#contact"
+            className={`${ROUNDED} inline-block px-20 py-5 text-lg font-semibold shadow-lg hover:scale-105 transition`}
+            style={{
+              background: `
+                radial-gradient(circle at center, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.25) 35%, transparent 70%),
+                linear-gradient(to right, #C17E46, #F4B93C)
+              `,
+              color: "#000",
+              boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+            }}
+          >
+            Book a Call
+          </a>
+        </div>
 
         {/* Intro */}
         <section className="text-justify mb-12">
@@ -396,18 +337,18 @@ function StepBuyStepPage() {
 
         {/* About */}
         <section id="about" className="mb-16 text-justify">
-          <p className="leading-relaxed text-lg md:text-xl mb-5" style={{ color: BASE_TEXT_COLOR }}>
+          <BodyText>
             With over 20 years of commercial and procurement experience, <HighlightSBS /> is led by
             Ben Crow. Having worked extensively across both public and private sectors, I bring
             practical insight into how organisations can deliver outcomes effectively while staying
             compliant with the Procurement Act and wider regulatory framework.
-          </p>
-          <p className="leading-relaxed text-lg md:text-xl mb-5" style={{ color: BASE_TEXT_COLOR }}>
+          </BodyText>
+          <BodyText>
             My focus has always been problem-solving: helping organisations cut through complexity,
             overcome obstacles, and achieve results with confidence. Whether it’s procurement
             strategy, commercial advice, or team training, <HighlightSBS /> offers support that is
             pragmatic, adaptable, and always outcome-driven.
-          </p>
+          </BodyText>
           <Link
             to="/about"
             className={`inline-block mt-6 ${ROUNDED} px-8 py-5 shadow-md hover:scale-105 transition`}
@@ -427,10 +368,7 @@ function StepBuyStepPage() {
         <section
           id="contact"
           className={`${ROUNDED} backdrop-blur shadow-md p-8`}
-          style={{
-            backgroundColor: "#F6EFE7",
-            color: BASE_TEXT_COLOR,
-          }}
+          style={{ backgroundColor: "#F6EFE7", color: BASE_TEXT_COLOR }}
         >
           <ContactForm />
         </section>
@@ -439,6 +377,7 @@ function StepBuyStepPage() {
   );
 }
 
+/* ---------- Router ---------- */
 export default function App() {
   return (
     <Routes>
