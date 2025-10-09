@@ -16,3 +16,34 @@
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+@media (max-width: 700px) {
+  header {
+    flex-direction: column !important;
+    align-items: center !important;
+    height: auto !important;
+    padding-top: 2rem !important;
+  }
+
+  header > div {
+    transform: none !important; /* disable scaling */
+    width: 100% !important;
+  }
+
+  header img {
+    max-width: 50vw !important;
+    height: auto !important;
+    margin-bottom: 2rem !important;
+  }
+
+  header .font-bold {
+    text-align: center !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+
+  header .font-bold div {
+    font-size: 2rem !important;
+    transform: none !important;
+  }
+}
