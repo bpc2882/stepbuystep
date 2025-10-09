@@ -119,61 +119,33 @@ function StepBuyStepPage() {
         ["--scale"]: "min(100vw / 1200px, 1)",
       }}
     >
-      {/* HEADER (absolute, uniformly scaled; uses px inside so proportions never change) */}
-      <header
-        className="absolute top-0 left-0 w-full flex justify-between items-start origin-top"
-        style={{
-          height: `${HEADER_HEIGHT}rem`,
-          padding: "0 96px",                       // 8vw at 1200px -> fixed px for uniform scaling
-          transform: "scale(var(--scale))",
-          transformOrigin: "top left",
-        }}
-      >
-        {/* Logo with glow */}
-        <div
-          className="relative grid place-items-center"
-          style={{ width: `${40 * LOGO_SCALE}%`, height: `${HEADER_HEIGHT * LOGO_SCALE}rem` }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: `
-                radial-gradient(circle at center,
-                  rgba(255,255,245,0.9) 0%,
-                  rgba(255,250,210,0.4) 45%,
-                  transparent 80%)
-              `,
-              filter: "blur(100px)",
-              opacity: 0.9,
-              zIndex: 0,
-            }}
-          />
-          <img src={Logo} alt="StepBuyStep logo" className="object-contain relative z-10" style={{ maxHeight: "80%", maxWidth: "80%" }} />
-        </div>
 
-        {/* Tagline (fixed design width in px so header truly scales as a unit) */}
-        <div
-          className="font-bold leading-tight text-right"
-          style={{
-            width: `${TAGLINE_WIDTH_PX}px`,                // fixed design width
-            height: `${HEADER_HEIGHT * 0.95}rem`,
-            color: BASE_TEXT_COLOR,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            gap: "1.2rem",
-          }}
-        >
-          <div style={{ fontSize: "3.2rem" }}>Cut procurement costs.</div>
-          <div style={{ fontSize: "3rem", transform: "translateX(-240px)" }}>No jargon.</div>
-          <div style={{ fontSize: "3rem", transform: "translateX(-360px)" }}>No fuss.</div>
-        </div>
-      </header>
-
-      {/* Spacer that reserves the exact scaled header height (prevents overlap on mobile) */}
-      <div aria-hidden className="w-full" style={{ height: `calc(${HEADER_HEIGHT}rem * var(--scale))` }} />
+<header className="max-w-[80rem] mx-auto flex justify-left bg-[#CBBCA7] min-h-[20rem]">
+  <div
+    className="flex items-center justify-center h-full"
+    style={{
+    background: `
+      radial-gradient(circle at 50% 35%,
+        rgba(255,255,245,0.55) 0%,
+        rgba(255,250,210,0.2) 45%,
+        rgba(203,188,167,0.08) 75%,
+        rgba(203,188,167,1) 100%)
+      `,
+      filter: "blur(0px)", // adjust to taste
+    }}
+  >
+    <img
+      src={Logo}
+      alt="Step Buy Step logo"
+      className="h-full max-h-[30rem] w-auto object-contain"
+    />
+  </div>
+    <div className="flex flex-col justify-end w-full">
+      <p className="text-[2.5rem] ml-[40%] font-bold leading-tight">Cut procurement costs.</p>
+      <p className="text-[2.5rem] ml-[20%] font-bold leading-tight">No jargon.</p>
+      <p className="text-[2.5rem] ml-[0%] font-bold leading-tight">No fuss.</p>
+    </div>
+</header>
 
       {/* MAIN CONTENT */}
       <main
