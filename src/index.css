@@ -22,28 +22,35 @@
     flex-direction: column !important;
     align-items: center !important;
     height: auto !important;
-    padding-top: 2rem !important;
-  }
-
-  header > div {
-    transform: none !important; /* disable scaling */
-    width: 100% !important;
+    padding-top: 3rem !important;
   }
 
   header img {
-    max-width: 50vw !important;
+    max-width: 55vw !important;
     height: auto !important;
-    margin-bottom: 2rem !important;
+    margin-bottom: 1.8rem !important;
   }
 
   header .font-bold {
-    text-align: center !important;
+    text-align: left !important; /* 👈 keep the stepped look */
     transform: none !important;
-    width: 100% !important;
+    width: auto !important;
   }
 
   header .font-bold div {
     font-size: 2rem !important;
-    transform: none !important;
+    line-height: 1.1 !important;
+    margin: 0.2rem 0 !important;
+  }
+
+  /* 👇 Step offsets, scaled-down */
+  header .font-bold div:nth-child(1) {
+    transform: translateX(0) !important;
+  }
+  header .font-bold div:nth-child(2) {
+    transform: translateX(-60px) !important;
+  }
+  header .font-bold div:nth-child(3) {
+    transform: translateX(-120px) !important;
   }
 }
