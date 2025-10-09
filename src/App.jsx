@@ -120,8 +120,7 @@ function StepBuyStepPage() {
       }}
     >
 
-<header className="max-w-[80rem] mx-auto flex justify-left bg-[#CBBCA7] min-h-[30rem] md:min-h-[20rem]
-">
+<header className="max-w-[80rem] mx-auto flex justify-left bg-[#CBBCA7] min-h-[20rem]">
   
   <img
     src={Logo}
