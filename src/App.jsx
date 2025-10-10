@@ -1,3 +1,5 @@
+{/* imports */}
+
 import Logo from "./assets/step buy step-1.svg";
 import React, { useState } from "react";
 import { Lightbulb, Target, Zap, Briefcase, Users, BookOpen } from "lucide-react";
@@ -120,64 +122,53 @@ function StepBuyStepPage() {
       }}
     >
 
-<header className="max-w-[80rem] mx-auto flex justify-left bg-[#CBBCA7] min-h-[20rem]">
-  
-<div className="relative flex items-center justify-center self-start mr-auto overflow-visible">
-  {/* Balanced warm glow */}
-  <div
-    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[135%] h-[135%] rounded-full pointer-events-none z-0"
-    style={{
-      background: `
-        radial-gradient(circle at center,
-          rgba(255,245,210,0.68) 0%,
-          rgba(255,225,150,0.45) 35%,
-          rgba(203,188,167,0.18) 70%,
-          rgba(203,188,167,0) 100%)
-      `,
-      filter: "blur(60px)",
-    }}
-  />
-  <img
-    src={Logo}
-    alt="Step Buy Step logo"
-    className="relative z-10 h-[30rem] sm:h-[25rem] md:h-[20rem] w-auto object-contain"
-  />
-</div>
 
+{/*---HEADER---*/}
+<header
+  className="max-w-[80rem] mx-auto flex justify-left min-h-[20rem]"
+  style={{
+    background:
+     "radial-gradient(circle at 14% 45%, #e1ddd6ff 0%, rgba(255,245,210,0) 13%, rgba(255,245,210,0) 25% "}}
+>
+  <div className="relative flex items-center justify-center self-start mr-auto overflow-visible">
+    {/* -Balanced warm glow- */}
+    
+    {/* Logo block */}
+    <img
+      src={Logo}
+      alt="Step Buy Step logo"
+      className="w-[33vw] md:w-[33w] max-w-[24rem] h-auto object-contain"
+    />
+  </div>
 
-
-
-
-
-
-
-
-    <div className="flex flex-col justify-end w-full">
-<p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[10%] sm:ml-[25%] md:ml-[40%] font-bold leading-tight">
-  Cut procurement costs.
-</p>
-<p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[5%] sm:ml-[15%] md:ml-[20%] font-bold leading-tight">
-  No jargon.
-</p>
-<p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[0%] font-bold leading-tight">
-  No fuss.
-</p>
-
-    </div>
+  {/* tagline block */}
+  <div className="flex flex-col justify-end w-full">
+    <p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[10%] sm:ml-[25%] md:ml-[40%] font-bold leading-tight">
+      Cut procurement costs.
+    </p>
+    <p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[5%] sm:ml-[15%] md:ml-[20%] font-bold leading-tight">
+      No jargon.
+    </p>
+    <p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[0%] font-bold leading-tight">
+      No fuss.
+    </p>
+  </div>
 </header>
+{/*END OF HEADER*/}
+      
+{/* MAIN CONTENT */}
+<main
+  className="relative z-20 pb-20 mx-auto"
+    style={{ maxWidth: PAGE_WIDTH, padding: "0 2rem" }}
+>
+<MakeALine className="mx-auto mt-6 mb-8" />
+ <p className="text-lg md:text-3xl leading-relaxed mt-1 mb-4 text-center" style={{ color: BASE_TEXT_COLOR }}>
+ <HighlightSBS /> makes procurement simple — save money, save time, and stay in control.
+ </p>
 
-      {/* MAIN CONTENT */}
-      <main
-        className="relative z-20 pb-20 mx-auto"
-        style={{ maxWidth: PAGE_WIDTH, padding: "0 2rem" }}
-      >
-        <MakeALine className="mx-auto mt-6 mb-8" />
-        <p className="text-lg md:text-3xl leading-relaxed mt-1 mb-4 text-center" style={{ color: BASE_TEXT_COLOR }}>
-          <HighlightSBS /> makes procurement simple — save money, save time, and stay in control.
-        </p>
+{/* CTA */}
+<div className="flex justify-center mt-8 mb-10">
 
-        {/* CTA */}
-        <div className="flex justify-center mt-8 mb-10">
 <a
   href="#contact"
   className="inline-block px-10 py-4 text-lg font-medium tracking-wide rounded-xl shadow-md transition-all duration-300 hover:scale-[1.04] hover:shadow-lg antialiased"
@@ -189,10 +180,6 @@ function StepBuyStepPage() {
 >
   Book a Call
 </a>
-
-
-
-
         </div>
 
         {/* Intro */}
