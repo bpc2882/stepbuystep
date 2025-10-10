@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1600" height="520" viewBox="0 0 1600 520"
+     role="img" aria-label="Cut procurement costs. No jargon. No fuss.">
+  <title>Cut procurement costs. No jargon. No fuss.</title>
+
+  <!-- Tunables -->
+  <!-- Change fill for colour; change font-size / x positions for spacing -->
+  <g fill="#222" font-weight="700"
+     font-family="Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif"
+     text-rendering="optimizeLegibility">
+
+    <!-- Line 1 -->
+    <text x="0"   y="140" font-size="120">Cut procurement costs.</text>
+
+    <!-- Line 2 (indented) -->
+    <text x="120" y="260" font-size="120">No jargon.</text>
+
+    <!-- Line 3 (more indented) -->
+    <text x="240" y="380" font-size="120">No fuss.</text>
+  </g>
+</svg>

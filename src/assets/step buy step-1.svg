@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Cropped and recoloured: logo only -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
-     width="23.3858in" height="16.5354in" version="1.1"
-     style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-     viewBox="5500 4200 13000 7600">
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="5600 3900 12800 8500"
+     version="1.1"
+     style="shape-rendering:geometricPrecision;
+            text-rendering:geometricPrecision;
+            image-rendering:optimizeQuality;
+            fill-rule:evenodd;
+            clip-rule:evenodd">
 
- <defs>
-  <style type="text/css">
-   <![CDATA[
-    .fil0 {fill:none}
-    .fil1 {fill:#0B1E3F;fill-rule:nonzero;} /* dark blue */
-    .fil2 {fill:#0B1E3F;fill-rule:nonzero;} /* dark blue */
-   ]]>
-  </style>
+  <defs>
+    <style type="text/css"><![CDATA[
+      .fil0 {fill:none}
+      .fil1 {fill:#0B1E3F;fill-rule:nonzero;}
+      .fil2 {fill:#0B1E3F;fill-rule:nonzero;}
+    ]]></style>
 
-  <!-- clipPath to hide text below ~Y=9000 -->
-  <clipPath id="logoOnly" clipPathUnits="userSpaceOnUse">
-    <rect x="0" y="0" width="23384.98" height="9500"/>
-  </clipPath>
- </defs>
+    <!-- Text gradient -->
+    <linearGradient id="amberGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#B86B2A"/>
+      <stop offset="50%" stop-color="#F4C14A"/>
+      <stop offset="100%" stop-color="#B86B2A"/>
+    </linearGradient>
 
- <g id="Layer_x0020_1">
-  <rect class="fil0" width="23384.98" height="16534.84"/>
-  <g id="_2492308567632" clip-path="url(#logoOnly)">
-   <polygon class="fil1" points="12891.25,5310.43 12891.25,5905.6 14024.34,5997.39 14024.34,5310.43"/>
-   <polygon class="fil1" points="12109.52,6562.98 14024.34,6640.93 14024.34,5997.39 12109.52,5997.39"/>
-   <path class="fil2" d="M11435.38 6640.93l0 601.1c-575.47,56.27 -1787.02,245.27 -1719.41,853.78 51.32,461.96 1227.88,718.56 -355.32,1346.34 1192.3,0 1833.13,136.17 2052.5,-288.23 272.93,-528.03 -364.01,-769.11 -666.74,-1050.18 -386.9,-359.28 296.12,-716.59 2556.43,-631.69 0,0 -1440.1,163.83 -1641.46,308.91 -201.32,145.12 467.87,367.28 983.09,571.54 515.23,204.29 1027.51,725.43 1092.67,1098.54l287.2 0 0 -2099.42 0 -710.68 -1110.39 0 -1478.57 0z"/>
+    <!-- Glow lifted by another ~15% -->
+    <radialGradient id="softGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#E8DCC3" stop-opacity="0.6"/>
+      <stop offset="40%" stop-color="#E8DCC3" stop-opacity="0.20"/>
+      <stop offset="100%" stop-color="#E8DCC3" stop-opacity="0"/>
+    </radialGradient>
+
+    <clipPath id="logoOnly" clipPathUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="23384.98" height="9500"/>
+    </clipPath>
+  </defs>
+
+  <!-- Gentle centred background glow -->
+  <rect x="5600" y="3900" width="12800" height="8500" fill="url(#softGlow)" />
+
+  <g id="Layer_x0020_1">
+    <rect class="fil0" width="23384.98" height="16534.84"/>
+    <g clip-path="url(#logoOnly)">
+      <polygon class="fil1" points="12891.25,5310.43 12891.25,5905.6 14024.34,5997.39 14024.34,5310.43"/>
+      <polygon class="fil1" points="12109.52,6562.98 14024.34,6640.93 14024.34,5997.39 12109.52,5997.39"/>
+      <path class="fil2" d="M11435.38 6640.93v601.1c-575.47,56.27 -1787.02,245.27 -1719.41,853.78 51.32,461.96 1227.88,718.56 -355.32,1346.34 1192.3,0 1833.13,136.17 2052.5,-288.23 272.93,-528.03 -364.01,-769.11 -666.74,-1050.18 -386.9,-359.28 296.12,-716.59 2556.43,-631.69 0,0 -1440.1,163.83 -1641.46,308.91 -201.32,145.12 467.87,367.28 983.09,571.54 515.23,204.29 1027.51,725.43 1092.67,1098.54h287.2v-2809.9h-2588.96z"/>
+    </g>
   </g>
- </g>
 
-<text x="11700" y="10500"
-      font-family="Gill Sans, Gill Sans MT, Calibri, sans-serif"
-      font-size="1400"
-      fill="#A0602D"
-      text-anchor="middle">
-  <tspan font-size="1200">S</tspan>tep 
-  <tspan font-style="italic"><tspan font-size="1200">B</tspan>uy</tspan> 
-  <tspan font-size="1200">S</tspan>tep
-</text>
-
-
-
+  <!-- Brand text -->
+  <text x="11700" y="10650"
+        font-family="Gill Sans, Gill Sans MT, Calibri, sans-serif"
+        font-size="1500"
+        font-weight="700"
+        fill="url(#amberGradient)"
+        text-anchor="middle">
+    STEP <tspan font-style="italic">BUY</tspan> STEP
+  </text>
 </svg>
