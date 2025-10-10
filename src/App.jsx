@@ -181,44 +181,28 @@ function StepBuyStepPage() {
         {width}px — {getBreakpointLabel(width)}
       </div>
 
-      {/* ---------- HEADER ---------- */}
-      <header className="w-full bg-[#CBBCA7] flex flex-col md:flex-row items-center justify-center relative overflow-visible pb-0 md:pb-1 pt-3 md:pt-5">
+<header className="w-full bg-[#CBBCA7] py-2">
+  <div className="max-w-[75rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center md:gap-x-8">
+    <div className="flex justify-center md:justify-start items-center">
+      <img
+        src={Logo}
+        alt="Step Buy Step logo"
+        className="w-[60%] md:w-[80%] max-w-[400px] h-auto align-middle"
+      />
+    </div>
+
+<div className="flex justify-center md:justify-end items-center -mt-6 md:mt-15 md:translate-x-[-6rem]">
+
+      <img
+        src={CutProc}
+        alt="Cut procurement costs"
+        className="w-[80%] md:w-[90%] max-w-[600px] h-auto align-middle"
+      />
+    </div>
+  </div>
+</header>
 
 
-{/* Logo */}
-<div className="flex justify-center md:justify-end items-center md:items-start w-full md:w-1/2 relative">
-  <img
-    src={Logo}
-    alt="Step Buy Step logo"
-    className="object-contain w-[70vw] sm:w-[55vw] md:w-[28vw] max-w-[460px] relative md:left-[-6rem]"
-    style={{ marginBottom: "-0.4rem" }}
-  />
-</div>
-
-
-{/* Taglines */}
-<div
-  className="flex justify-center md:justify-start items-center w-full md:w-1/2 relative"
-  style={{ lineHeight: 0, marginTop: "-0.7rem" }}
->
-  <img
-    src={CutProc}
-    alt="Cut procurement costs"
-    className="block object-contain w-[90vw] sm:w-[70vw] md:w-[42vw] max-w-[720px] h-auto"
-    style={{
-      marginTop: "-0.6rem",
-      marginBottom: "-1.1rem",
-      position: "relative",
-      top: "0rem",
-    }}
-  />
-</div>
-
-
-
-
-
-      </header>
 
       {/* ---------- MAIN CONTENT ---------- */}
       <main
