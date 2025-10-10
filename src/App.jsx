@@ -132,12 +132,22 @@ function StepBuyStepPage() {
 >
   <div className="relative flex items-center justify-center self-start mr-auto overflow-visible">
     {/* -Balanced warm glow- */}
+
+
+    {/* | Prefix | Screen width ≥ | Typical device               |
+| ------ | -------------- | ---------------------------- |
+| `sm:`  | 640 px         | small phones / large mobiles |
+| `md:`  | 768 px         | tablets / small laptops      |
+| `lg:`  | 1024 px        | desktops                     |
+| `xl:`  | 1280 px        | large desktops               |
+| `2xl:` | 1536 px        | very large monitors          | */}
+
     
     {/* Logo block */}
     <img
       src={Logo}
       alt="Step Buy Step logo"
-      className="w-[33vw] md:w-[33vw] max-w-[24rem] h-auto object-contain"
+      className="w-[33vw] md:w-[50vw] max-w-[24rem] h-auto object-contain"
     />
   </div>
 
