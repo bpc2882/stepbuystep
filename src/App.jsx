@@ -185,16 +185,17 @@ function StepBuyStepPage() {
 <header className="w-full bg-[#CBBCA7] py-10">
   <div className="max-w-[75rem] mx-auto px-10 grid grid-cols-1 md:grid-cols-2 items-center gap-y-1 md:gap-x-8">
 
-    {/* Logo */}
-    <div className="flex justify-center md:justify-start items-center w-full">
-      <div className="scale-[1.2] sm:scale-105">
-        <img
-          src={Logo}
-          alt="Step Buy Step logo"
-          className="object-contain w-full max-w-[px] h-auto align-middle"
-        />
-      </div>
-    </div>
+{/* Logo */}
+<div className="flex justify-center md:justify-start items-center w-full mt-10 md:mt-0">
+  <div className="scale-[1.15] sm:scale-105 translate-y-5 md:translate-y-0">
+    <img
+      src={Logo}
+      alt="Step Buy Step logo"
+      className="object-contain w-full max-w-[420px] h-auto align-middle"
+    />
+  </div>
+</div>
+
 
     {/* Taglines
     <div className="flex justify-center md:justify-end items-center w-full mt-0 md:mt-4 md:translate-x-[-2rem]">
