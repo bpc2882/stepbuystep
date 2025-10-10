@@ -129,13 +129,13 @@ function StepBuyStepPage() {
   className="w-full max-w-[80rem] mx-auto flex flex-col md:flex-row items-stretch bg-[#CBBCA7] min-h-[20rem]"
 >
   {/* logo wrapper */}
-  <div className="relative flex items-center justify-center w-[60vw] md:w-[50vw] min-w-[200px] overflow-visible">
+  <div className="relative flex items-center justify-start w-[60vw] md:w-[35vw] min-w-[35vw] overflow-visible">
     <div
       className="absolute inset-0 pointer-events-none"
       style={{
         background:
-          "radial-gradient(circle at 50% 50%, #e1ddd6ff 0%, rgba(255,245,210,0.25) 30%, rgba(255,245,210,0) 70%)",
-        filter: "blur(40px)",
+          "radial-gradient(circle at 50% 50%, #e1ddd6ff 0%, rgba(255, 255, 255, 0.25) 30%, rgba(255, 255, 255, 0.25, 50%)",
+        filter: "blur(30px)",
       }}
     />
     <img
