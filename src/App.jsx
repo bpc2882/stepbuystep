@@ -124,54 +124,57 @@ function StepBuyStepPage() {
 
 
 {/*---HEADER---*/}
-{/*---HEADER---*/}
-<header
-  className="w-full max-w-[80rem] mx-auto flex flex-col md:flex-row items-stretch bg-[#CBBCA7] min-h-[20rem]"
->
+<header className="w-full max-w-[80rem] mx-auto flex flex-col md:flex-row items-center md:items-stretch bg-[#CBBCA7] px-4 md:px-0">
   {/* logo wrapper */}
-  <div className="relative flex items-center justify-start w-[60vw] md:w-[35vw] min-w-[35vw] overflow-visible">
+  <div className="relative flex-shrink-0 flex items-center justify-start md:justify-center w-full md:w-[35vw] overflow-visible">
     <div
       className="absolute inset-0 pointer-events-none"
       style={{
         background:
-          "radial-gradient(circle at 50% 50%, #e1ddd6ff 0%, rgba(255, 255, 255, 0.25) 30%, rgba(255, 255, 255, 0.25, 50%)",
-        filter: "blur(30px)",
+          "radial-gradient(circle at 50% 50%, #e1ddd6ff 0%, rgba(255,255,255,0.25) 20%, rgba(255,255,255,0.25, 30%)",
+        filter: "blur(60px)",
       }}
     />
     <img
       src={Logo}
       alt="Step Buy Step logo"
-      className="relative z-10 w-full h-auto object-contain"
+      className="relative z-10 w-[70%] sm:w-[60%] md:w-full h-auto object-contain"
     />
   </div>
 
   {/* taglines */}
-  <div className="flex flex-col justify-end w-full box-border m-0 p-0 pb-[2rem]">
-    <div>
-<p className="font-bold leading-tight ml-[6%] sm:ml-[10%] md:ml-[20%]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)" }}>
-  Cut procurement costs.
-</p>
-<p className="font-bold leading-tight ml-[3%] sm:ml-[7%] md:ml-[12.5%]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)" }}>
-  No jargon.
-</p>
-<p className="font-bold leading-tight ml-[0%] sm:ml-[3%] md:ml-[5%]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)" }}>
-  No fuss.
-</p>
-
+  <div className="flex flex-col justify-start md:justify-end w-full p-0 mt-[-1rem] md:mt-[6rem] pb-[1.5rem]">
+    <div className="ml-8 sm:ml-12 md:ml-20">
+      <p
+        className="font-bold leading-tight ml-8 sm:ml-10 md:ml-8"
+        style={{ fontSize: "clamp(1.6rem,4.5vw,3.2rem)" }}
+      >
+        Cut procurement costs.
+      </p>
+      <p
+        className="font-bold leading-tight ml-4 sm:ml-6 md:ml-4"
+        style={{ fontSize: "clamp(1.6rem,4.5vw,3.2rem)" }}
+      >
+        No jargon.
+      </p>
+      <p
+        className="font-bold leading-tight ml-0 sm:ml-2 md:ml-0"
+        style={{ fontSize: "clamp(1.6rem,4.5vw,3.2rem)" }}
+      >
+        No fuss.
+      </p>
     </div>
   </div>
 </header>
 
-
-
 {/*END OF HEADER*/}
-      
+
 {/* MAIN CONTENT */}
 <main
   className="relative z-20 pb-20 mx-auto"
     style={{ maxWidth: PAGE_WIDTH, padding: "0 2rem" }}
 >
-<MakeALine className="mx-auto mt-6 mb-8" />
+<MakeALine className="mx-auto mt-6 mb-6" />
  <p className="text-lg md:text-3xl leading-relaxed mt-1 mb-4 text-center" style={{ color: BASE_TEXT_COLOR }}>
  <HighlightSBS /> makes procurement simple — save money, save time, and stay in control.
  </p>
