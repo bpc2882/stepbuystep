@@ -181,26 +181,37 @@ function StepBuyStepPage() {
         {width}px — {getBreakpointLabel(width)}
       </div>
 
+{/* ---------- HEADER ---------- */}
 <header className="w-full bg-[#CBBCA7] py-2">
-  <div className="max-w-[75rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center md:gap-x-8">
-    <div className="flex justify-center md:justify-start items-center">
-      <img
-        src={Logo}
-        alt="Step Buy Step logo"
-        className="w-[60%] md:w-[80%] max-w-[400px] h-auto align-middle"
-      />
+  <div className="max-w-[75rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-y-1 md:gap-x-8">
+
+    {/* Logo */}
+    <div className="flex justify-center md:justify-start items-center w-full">
+      <div className="scale-[1.2] sm:scale-100">
+        <img
+          src={Logo}
+          alt="Step Buy Step logo"
+          className="object-contain w-full max-w-[420px] h-auto align-middle"
+        />
+      </div>
     </div>
 
-<div className="flex justify-center md:justify-end items-center -mt-6 md:mt-15 md:translate-x-[-6rem]">
-
-      <img
-        src={CutProc}
-        alt="Cut procurement costs"
-        className="w-[80%] md:w-[90%] max-w-[600px] h-auto align-middle"
-      />
+    {/* Taglines */}
+    <div className="flex justify-center md:justify-end items-center w-full mt-0 md:mt-4 md:translate-x-[-2rem]">
+      <div className="scale-[1.5] sm:scale-100">
+        <img
+          src={CutProc}
+          alt="Cut procurement costs"
+          className="object-contain w-full max-w-[640px] h-auto align-middle"
+        />
+      </div>
     </div>
+
   </div>
 </header>
+
+
+
 
 
 
