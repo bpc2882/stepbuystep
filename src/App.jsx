@@ -182,21 +182,21 @@ function StepBuyStepPage() {
       </div>
 
 {/* ---------- HEADER ---------- */}
-<header className="w-full bg-[#CBBCA7] py-2">
-  <div className="max-w-[75rem] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 items-center gap-y-1 md:gap-x-8">
+<header className="w-full bg-[#CBBCA7] py-10">
+  <div className="max-w-[75rem] mx-auto px-10 grid grid-cols-1 md:grid-cols-2 items-center gap-y-1 md:gap-x-8">
 
     {/* Logo */}
     <div className="flex justify-center md:justify-start items-center w-full">
-      <div className="scale-[1.2] sm:scale-100">
+      <div className="scale-[1.2] sm:scale-105">
         <img
           src={Logo}
           alt="Step Buy Step logo"
-          className="object-contain w-full max-w-[420px] h-auto align-middle"
+          className="object-contain w-full max-w-[px] h-auto align-middle"
         />
       </div>
     </div>
 
-    {/* Taglines */}
+    {/* Taglines
     <div className="flex justify-center md:justify-end items-center w-full mt-0 md:mt-4 md:translate-x-[-2rem]">
       <div className="scale-[1.5] sm:scale-100">
         <img
@@ -205,7 +205,7 @@ function StepBuyStepPage() {
           className="object-contain w-full max-w-[640px] h-auto align-middle"
         />
       </div>
-    </div>
+    </div> */}
 
   </div>
 </header>
@@ -221,7 +221,7 @@ function StepBuyStepPage() {
         style={{ maxWidth: PAGE_WIDTH, padding: "0 2rem" }}
       >
 
-        <MakeALine className="mx-auto mt-1 mb-6" />
+        {/* <MakeALine className="mx-auto mt-1 mb-6" /> */}
         <p
           className="text-lg md:text-3xl leading-relaxed mt-0 mb-4 text-center"
           style={{ color: BASE_TEXT_COLOR }}
