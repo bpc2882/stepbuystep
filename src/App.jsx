@@ -124,46 +124,46 @@ function StepBuyStepPage() {
 
 
 {/*---HEADER---*/}
+{/*---HEADER---*/}
 <header
-  className="max-w-[80rem] mx-auto flex justify-left min-h-[20rem]"
-  style={{
-    background:
-     "radial-gradient(circle at 14% 45%, #e1ddd6ff 0%, rgba(255,245,210,0) 13%, rgba(255,245,210,0) 25% "}}
+  className="w-full max-w-[80rem] mx-auto flex flex-col md:flex-row items-stretch bg-[#CBBCA7] min-h-[20rem]"
 >
-  <div className="relative flex items-center justify-center self-start mr-auto overflow-visible">
-    {/* -Balanced warm glow- */}
-
-
-    {/* | Prefix | Screen width ≥ | Typical device               |
-| ------ | -------------- | ---------------------------- |
-| `sm:`  | 640 px         | small phones / large mobiles |
-| `md:`  | 768 px         | tablets / small laptops      |
-| `lg:`  | 1024 px        | desktops                     |
-| `xl:`  | 1280 px        | large desktops               |
-| `2xl:` | 1536 px        | very large monitors          | */}
-
-    
-    {/* Logo block */}
+  {/* logo wrapper */}
+  <div className="relative flex items-center justify-center w-[60vw] md:w-[50vw] min-w-[200px] overflow-visible">
+    <div
+      className="absolute inset-0 pointer-events-none"
+      style={{
+        background:
+          "radial-gradient(circle at 50% 50%, #e1ddd6ff 0%, rgba(255,245,210,0.25) 30%, rgba(255,245,210,0) 70%)",
+        filter: "blur(40px)",
+      }}
+    />
     <img
       src={Logo}
       alt="Step Buy Step logo"
-       className="flex-shrink-0 w-[70vw] sm:w-[70vw] md:w-[30vw] h-auto object-contain"
+      className="relative z-10 w-full h-auto object-contain"
     />
   </div>
 
-  {/* tagline block */}
-  <div className="flex flex-col justify-end w-full">
-    <p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[10%] sm:ml-[25%] md:ml-[40%] font-bold leading-tight">
-      Cut procurement costs.
-    </p>
-    <p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[5%] sm:ml-[15%] md:ml-[20%] font-bold leading-tight">
-      No jargon.
-    </p>
-    <p className="text-[2rem] sm:text-[2.3rem] md:text-[2.5rem] ml-[0%] font-bold leading-tight">
-      No fuss.
-    </p>
+  {/* taglines */}
+  <div className="flex flex-col justify-end w-full box-border m-0 p-0 pb-[2rem]">
+    <div>
+<p className="font-bold leading-tight ml-[6%] sm:ml-[10%] md:ml-[20%]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)" }}>
+  Cut procurement costs.
+</p>
+<p className="font-bold leading-tight ml-[3%] sm:ml-[7%] md:ml-[12.5%]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)" }}>
+  No jargon.
+</p>
+<p className="font-bold leading-tight ml-[0%] sm:ml-[3%] md:ml-[5%]" style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.2rem)" }}>
+  No fuss.
+</p>
+
+    </div>
   </div>
 </header>
+
+
+
 {/*END OF HEADER*/}
       
 {/* MAIN CONTENT */}

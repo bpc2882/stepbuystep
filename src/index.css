@@ -1,7 +1,10 @@
+
 @import "tailwindcss";
 
 @source "../index.html";
 @source "./**/*.{js,jsx,ts,tsx}";
+
+
 
 /* Any extra utilities */
 .perspective {
@@ -61,4 +64,9 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }

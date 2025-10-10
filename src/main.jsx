@@ -1,11 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'   // <— this line is essential
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-<BrowserRouter>
-<App />
-</BrowserRouter>
+// Tailwind first, then overrides
+import "./index.css";
+import "./global.css";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
