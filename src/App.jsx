@@ -137,7 +137,7 @@ function StepBuyStepPage() {
     <img
       src={Logo}
       alt="Step Buy Step logo"
-      className="w-[33vw] md:w-[33w] max-w-[24rem] h-auto object-contain"
+      className="w-[33vw] md:w-[33vw] max-w-[24rem] h-auto object-contain"
     />
   </div>
 
