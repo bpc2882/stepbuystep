@@ -1,102 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="20 0 800 450"
+     viewBox="0 0 850 450"
      role="img"
-     aria-label="STEP BUY STEP logo with text gradients">
+     aria-label="STEP BUY STEP logo with natural ivory steps and earthy text">
+
   <defs>
-    <!-- top step: subtle washed-out gradient -->
-    <linearGradient id="topGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#000000e5"/>
-      <stop offset="100%" stop-color="#000000e5"/>
+    <!-- TEXT COLOR: earthy brown -->
+    <linearGradient id="warmText" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3A2C28"/>
+      <stop offset="100%" stop-color="#3A2C28"/>
     </linearGradient>
 
-    <!-- middle step: shiny red -->
-    <linearGradient id="buyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#000000e5"/>
-      <stop offset="50%" stop-color="#000000e5"/>
-      <stop offset="100%" stop-color="#000000e5"/>
-    </linearGradient>
-
-    <!-- bottom step: bold, deeper tone -->
-    <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#000000e5"/>
-      <stop offset="100%" stop-color="#000000e5"/>
+    <!-- NATURAL IVORY → TRANSPARENT GRADIENT -->
+    <linearGradient id="stoneFade" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%"   stop-color="#E0D7CA" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#E0D7CA" stop-opacity="0"/>
     </linearGradient>
 
     <style>
       .word {
-        font-family: "Nunito Sans","M PLUS Rounded 1c","Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-        font-weight: 520;
-        
+        font-family: "Quicksand", "Nunito", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+        text-anchor: middle;
       }
-
-      .step, .backstep1, .backstep2, .backstep3, .backstep4, .backstep5 {
-        stroke-linecap: butt;
+      .word.step {
+        font-weight: 500;
       }
-
-.step        { stroke: #c9892fdd; stroke-width: 8.5; }
-.backstep1   { stroke: rgba(201, 137, 47, 0.51); stroke-width: 8; }  
-.backstep2   { stroke: #ca892e84; stroke-width: 8; }
-.backstep3   { stroke: #cb8b2d70; stroke-width: 8; }
-.backstep4   { stroke: #cc8c2c45; stroke-width: 8; }
-.backstep5   { stroke: #cd8d2b25; stroke-width: 8; }
-
-
-
-
-
+      .word.buy {
+        font-weight: 700;
+      }
     </style>
   </defs>
 
-<!-- TOP STEP -->
-<!-- TOP STEP -->
-<!-- TOP STEP -->
-<!-- TOP STEP -->
-<!-- TOP STEP -->
-<!-- TOP STEP -->
-<!-- TOP STEP (shifted right 10) -->
-<!-- TOP STEP -->
-<!-- TOP STEP -->
-<!-- TOP STEP -->
-<!-- TOP STEP (everything shifted right by 10) -->
-<g>
-  <line class="backstep1" x1="270" y1="125" x2="660" y2="125"/>
-  <line class="backstep2" x1="285" y1="115" x2="675" y2="115"/>
-  <line class="backstep3" x1="300" y1="105" x2="690" y2="105"/>
-  <line class="backstep4" x1="315" y1="95"  x2="705" y2="95"/>
-  <line class="backstep5" x1="330" y1="85"  x2="720" y2="85"/>
-  <line class="step" x1="260" y1="135" x2="650" y2="135"/>
-  <line class="step" x1="264.4" y1="139.1" x2="264.4" y2="200"/> <!-- riser moved right too -->
-  <text class="word" x="345" y="125" font-size="100" fill="url(#topGradient)">STEP</text>
-</g>
+  <!-- TOP STEP -->
+  <g>
+    <polygon points="239,135 620,135 680,85 299,85" fill="url(#stoneFade)" />
+    <polygon points="239,135 620,135 620,205 239,205" fill="url(#stoneFade)" />
+    <text class="word step" x="460" y="125" font-size="100" fill="url(#warmText)">STEP</text>
+  </g>
 
+  <!-- MIDDLE STEP -->
+  <g>
+    <polygon points="180,255 560,255 620,205 240,205" fill="url(#stoneFade)" />
+    <polygon points="180,255 560,255 560,325 180,325" fill="url(#stoneFade)" />
+    <text class="word buy" x="400" y="245" font-size="110" fill="url(#warmText)">BUY</text>
+  </g>
 
-<!-- MIDDLE STEP -->
-<g>
-  <line class="backstep1" x1="200" y1="245" x2="580" y2="245"/>
-  <line class="backstep2" x1="215" y1="235" x2="595" y2="235"/>
-  <line class="backstep3" x1="230" y1="225" x2="610" y2="225"/>
-  <line class="backstep4" x1="245" y1="215" x2="625" y2="215"/>
-  <line class="backstep5" x1="260" y1="205" x2="640" y2="205"/>
-  <line class="step" x1="190" y1="255" x2="570" y2="255"/>
-  <line class="step" x1="194.4" y1="259.2" x2="194.4" y2="320"/>
-  <text class="word" x="273" y="245" font-size="100" fill="url(#buyGradient)" style="font-weight:600">BUY</text>
-</g>
-
-<!-- BOTTOM STEP -->
-<g>
-  <line class="backstep1" x1="130" y1="365" x2="510" y2="365"/>
-  <line class="backstep2" x1="145" y1="355" x2="525" y2="355"/>
-  <line class="backstep3" x1="160" y1="345" x2="540" y2="345"/>
-  <line class="backstep4" x1="175" y1="335" x2="555" y2="335"/>
-  <line class="backstep5" x1="190" y1="325" x2="570" y2="325"/>
-  <line class="step" x1="120" y1="375" x2="500" y2="375"/>
-  <text class="word" x="205" y="365" font-size="100" fill="url(#bottomGradient)">STEP</text>
-</g>
-
-
-
-
-
-
+  <!-- BOTTOM STEP -->
+  <g>
+    <polygon points="120,375 500,375 560,325 180,325" fill="url(#stoneFade)" />
+    <text class="word step" x="340" y="365" font-size="100" fill="url(#warmText)">STEP</text>
+  </g>
 </svg>
