@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 -50 940 600"
+     viewBox="20 0 800 450"
      role="img"
      aria-label="STEP BUY STEP logo with text gradients">
   <defs>
     <!-- top step: subtle washed-out gradient -->
     <linearGradient id="topGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#020731e5"/>
-      <stop offset="100%" stop-color="#020731e5"/>
+      <stop offset="0%" stop-color="#000000e5"/>
+      <stop offset="100%" stop-color="#000000e5"/>
     </linearGradient>
 
     <!-- middle step: shiny red -->
     <linearGradient id="buyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#020731e5"/>
-      <stop offset="50%" stop-color="#020731e5"/>
-      <stop offset="100%" stop-color="#020731e5"/>
+      <stop offset="0%" stop-color="#000000e5"/>
+      <stop offset="50%" stop-color="#000000e5"/>
+      <stop offset="100%" stop-color="#000000e5"/>
     </linearGradient>
 
     <!-- bottom step: bold, deeper tone -->
     <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#020731e5"/>
-      <stop offset="100%" stop-color="#020731e5"/>
+      <stop offset="0%" stop-color="#000000e5"/>
+      <stop offset="100%" stop-color="#000000e5"/>
     </linearGradient>
 
     <style>
       .word {
         font-family: "Nunito Sans","M PLUS Rounded 1c","Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-        font-weight: 490;
+        font-weight: 520;
         
       }
 
@@ -67,7 +67,7 @@
   <line class="backstep5" x1="330" y1="85"  x2="720" y2="85"/>
   <line class="step" x1="260" y1="135" x2="650" y2="135"/>
   <line class="step" x1="264.4" y1="139.1" x2="264.4" y2="200"/> <!-- riser moved right too -->
-  <text class="word" x="345" y="125" font-size="120" fill="url(#topGradient)">STEP</text>
+  <text class="word" x="345" y="125" font-size="100" fill="url(#topGradient)">STEP</text>
 </g>
 
 
@@ -80,7 +80,7 @@
   <line class="backstep5" x1="260" y1="205" x2="640" y2="205"/>
   <line class="step" x1="190" y1="255" x2="570" y2="255"/>
   <line class="step" x1="194.4" y1="259.2" x2="194.4" y2="320"/>
-  <text class="word" x="273" y="245" font-size="120" fill="url(#buyGradient)" style="font-weight:600">BUY</text>
+  <text class="word" x="273" y="245" font-size="100" fill="url(#buyGradient)" style="font-weight:600">BUY</text>
 </g>
 
 <!-- BOTTOM STEP -->
@@ -91,7 +91,7 @@
   <line class="backstep4" x1="175" y1="335" x2="555" y2="335"/>
   <line class="backstep5" x1="190" y1="325" x2="570" y2="325"/>
   <line class="step" x1="120" y1="375" x2="500" y2="375"/>
-  <text class="word" x="205" y="365" font-size="120" fill="url(#bottomGradient)">STEP</text>
+  <text class="word" x="205" y="365" font-size="100" fill="url(#bottomGradient)">STEP</text>
 </g>
 
 
