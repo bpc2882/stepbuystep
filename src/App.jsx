@@ -64,19 +64,17 @@ const HighlightSBS = () => (
 );
 
 const MakeALine = ({ className = "", fullWidth = false }) => (
-<div
-  className={`relative ${fullWidth ? "w-[95vw]" : "w-full"} mx-auto ${className || "my-4"}`}
-
+  <div
+    className={`relative ${fullWidth ? "w-[95vw]" : "w-full"} mx-auto ${className || "my-4"}`}
     style={{
-      background: `
-        radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.25) 35%, transparent 70%),
-        linear-gradient(to right, #C17E46, #F4B93C)
-      `,
+      background:
+        "radial-gradient(circle at center, rgba(255,255,240,0.9) 0%, rgba(255,255,220,0.45) 35%, transparent 75%), linear-gradient(to right, #C17E46, #F4B93C)",
       height: "3px",
       borderRadius: "9999px",
     }}
   />
 );
+
 
 const SectionTitle = ({ text }) => {
   const [firstWord, ...rest] = text.split(" ");
@@ -173,15 +171,12 @@ function StepBuyStepPage() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  return (
-    <div
-      className="relative overflow-hidden antialiased min-h-screen"
-      style={{ background: MODERN_BG, color: TEXT_COLOR }}
-    >
-      {/* diagnostic overlay */}
-      <div className="fixed bottom-2 right-3 z-[9999] bg-black/80 text-white text-xs px-3 py-1 rounded shadow-lg font-mono">
-        {width}px — {getBreakpointLabel(width)}
-      </div>
+return (
+  <div
+    className="relative overflow-hidden antialiased min-h-screen"
+    style={{ backgroundColor: "#F4E5C8", color: TEXT_COLOR }}
+  >
+
 
 {/* ---------- HEADER ---------- */}
 <header
