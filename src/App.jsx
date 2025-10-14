@@ -110,23 +110,32 @@ const FlippableBox = ({
   height = "h-64",
 }) => {
   const [flipped, setFlipped] = useState(false);
+
   return (
     <div
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
       className={`relative w-full ${height}`}
-      style={{ perspective: "1000px" }}
+      style={{
+        perspective: "1000px",
+        WebkitPerspective: "1000px",
+      }}
     >
       <div
         className={`relative w-full h-full duration-700 transform ${
           flipped ? "rotate-y-180" : ""
         }`}
-        style={{ transformStyle: "preserve-3d" }}
+        style={{
+          transformStyle: "preserve-3d",
+          WebkitTransformStyle: "preserve-3d",
+        }}
       >
+        {/* FRONT */}
         <div
           className={`absolute inset-0 ${ROUNDED} p-6 flex flex-col items-center justify-center text-center`}
           style={{
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
             background: bg,
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
@@ -144,15 +153,19 @@ const FlippableBox = ({
             {text}
           </p>
         </div>
+
+        {/* BACK */}
         <div
           className={`absolute inset-0 ${ROUNDED} p-6 flex items-center justify-center text-center`}
           style={{
             backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+            WebkitTransform: "rotateY(180deg)",
             background: bg,
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
             boxShadow: SHADOW_STRENGTH,
-            transform: "rotateY(180deg)",
           }}
         >
           <p className="font-medium text-lg leading-relaxed">{detail}</p>
@@ -161,6 +174,7 @@ const FlippableBox = ({
     </div>
   );
 };
+
 
 /* ---------- main page ---------- */
 function StepBuyStepPage() {

@@ -1,64 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="80 35 580 370"
+     viewBox="100 50 580 370"
      role="img"
-     aria-label="STEP BUY STEP logo with unified natural tones and vivid text">
+     aria-label="STEP BUY STEP logo with even step spacing">
 
   <defs>
-    <!-- TEXT COLORS -->
-    <!-- STEP: slightly duller amber -->
-    <linearGradient id="warmTextStep" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#b89447f0"/>
-      <stop offset="100%" stop-color="#b1873cf0"/>
+    <!-- TEXT GRADIENT -->
+    <linearGradient id="pageTone" gradientUnits="userSpaceOnUse"
+                    x1="100" y1="420" x2="640" y2="80">
+      <stop offset="0%"   stop-color="#b07c2c"/>
+      <stop offset="30%"  stop-color="#c99734"/>
+      <stop offset="50%"  stop-color="#f7d352"/>
+      <stop offset="56%"  stop-color="#fce77a"/>
+      <stop offset="78%"  stop-color="#e29434"/>
+      <stop offset="100%" stop-color="#c96e24"/>
     </linearGradient>
 
-    <!-- BUY: richer, more saturated amber -->
-    <linearGradient id="warmTextBuy" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#c29e4ff3"/>
-      <stop offset="100%" stop-color="#ce9b44ff"/>
-    </linearGradient>
-
-    <!-- TREAD GRADIENT -->
+    <!-- STEP SURFACE GRADIENTS -->
     <linearGradient id="stepTread" x1="0%" y1="100%" x2="0%" y2="0%">
       <stop offset="0%"   stop-color="#CBBCA7" stop-opacity="1"/>
-      <stop offset="50%"  stop-color="#CBBCA7" stop-opacity="0.25"/>
+      <stop offset="50%"  stop-color="#CBBCA7" stop-opacity="0.18"/>
       <stop offset="100%" stop-color="#CBBCA7" stop-opacity="0"/>
     </linearGradient>
 
-    <!-- FACE GRADIENT -->
     <linearGradient id="stepFace" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%"   stop-color="#c1c49bff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#141428ff" stop-opacity="0"/>
+      <stop offset="0%"   stop-color="#c1c49bff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#5b5ba9ff" stop-opacity="0"/>
     </linearGradient>
 
     <style>
       .word {
         font-family: "Quicksand", "Nunito", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
         text-anchor: middle;
+        fill: url(#pageTone);
       }
-      .word.step { font-weight: 450; }
+      .word.step { font-weight: 500; }
       .word.buy  { font-weight: 600; }
     </style>
   </defs>
 
-  <!-- TOP STEP -->
-  <g>
-    <polygon points="239,135 620,135 660,105 299,105" fill="url(#stepTread)" />
-    <polygon points="239,135 620,135 620,185 239,185" fill="url(#stepFace)" />
-    <text class="word step" x="460" y="128" font-size="100" fill="url(#warmTextStep)">STEP</text>
-  </g>
-
-  <!-- MIDDLE STEP -->
-  <g>
-    <polygon points="180,240 561,240 601,210 240,210" fill="url(#stepTread)" />
-    <polygon points="180,240 561,240 561,290 180,290" fill="url(#stepFace)" />
-    <text class="word buy" x="400" y="233" font-size="110" fill="url(#warmTextBuy)">BUY</text>
-  </g>
-
   <!-- BOTTOM STEP -->
   <g>
-    <polygon points="121,355 502,355 542,325 181,325" fill="url(#stepTread)" />
-    <polygon points="121,355 502,355 502,405 121,405" fill="url(#stepFace)" />
-    <text class="word step" x="340" y="348" font-size="100" fill="url(#warmTextStep)">STEP</text>
+    <polygon points="145,355 478,355 510,332 205,332" fill="url(#stepTread)" />
+    <polygon points="145,355 478,355 478,385 145,385" fill="url(#stepFace)" />
+    <text class="word step" x="340" y="348" font-size="100">STEP</text>
+  </g>
+
+  <!-- MIDDLE STEP (raised slightly for balanced spacing) -->
+  <g>
+    <polygon points="204,255 537,255 569,232 264,232" fill="url(#stepTread)" />
+    <polygon points="204,255 537,255 537,295 204,295" fill="url(#stepFace)" />
+    <text class="word buy" x="400" y="248" font-size="100">BUY</text>
+  </g>
+
+  <!-- TOP STEP (raised to maintain symmetry) -->
+  <g>
+    <polygon points="263,160 596,160 628,137 323,137" fill="url(#stepTread)" />
+    <polygon points="263,160 596,160 596,200 263,200" fill="url(#stepFace)" />
+    <text class="word step" x="460" y="153" font-size="90">STEP</text>
   </g>
 </svg>
