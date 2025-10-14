@@ -195,17 +195,18 @@ function StepBuyStepPage() {
   }}
 >
 
-  <div className="flex justify-center md:justify-start items-center w-full">
-    <img
-      src={Logo}
-      alt="Step Buy Step logo"
-      className="object-contain h-auto w-[55vw] sm:w-[45vw] md:w-[350px] lg:w-[420px] align-middle"
-      style={{
-        transform: 'scale(var(--logo-scale, 0.7))',
-        transformOrigin: 'center',
-      }}
-    />
-  </div>
+<div className="flex justify-center md:justify-start items-center w-full">
+  <img
+    src={Logo}
+    alt="Step Buy Step logo"
+    className="object-contain h-auto w-[55vw] sm:w-[45vw] md:w-[350px] lg:w-[420px] align-middle"
+    style={{
+      transform: 'scale(var(--logo-scale, 0.7))',
+      transformOrigin: 'center',
+    }}
+  />
+</div>
+
 </header>
 
 
@@ -258,7 +259,7 @@ function StepBuyStepPage() {
             problem-solving rather than procedure, we help organisations cut
             through complexity, focus on outcomes, and make better buying and
             business decisions with confidence.
-  </BodyText>
+    </BodyText>
 </section>
 
         <SectionTitle text="Our services..." />

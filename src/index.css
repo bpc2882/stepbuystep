@@ -5,30 +5,20 @@
 @source "./**/*.{js,jsx,ts,tsx}";
 
 /* ---------- 3D utilities ---------- */
-.perspective {
-  perspective: 1000px;
-}
-.preserve-3d {
-  transform-style: preserve-3d;
-}
-.backface-hidden {
-  backface-visibility: hidden;
-}
-.rotate-y-180 {
-  transform: rotateY(180deg);
-}
-
-
-
+.perspective { perspective: 1000px; }
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
 
 /* ---------- Responsive header (≤700px) ---------- */
 @media (max-width: 700px) {
   header {
     flex-direction: column !important;
-    align-items: flex-start !important;
+    align-items: center !important;
     justify-content: flex-start !important;
     height: auto !important;
-    padding-top: 0.8rem !important;
+    margin-top: 0 !important;
+    padding: 0.8rem 0 0 !important;
     padding-left: 6vw !important;
   }
 
@@ -36,6 +26,9 @@
     max-width: 45vw !important;
     height: auto !important;
     margin-bottom: 0.8rem !important;
+    /* small positional tweak */
+    transform: translate(-6vw, 0.3vh) scale(var(--logo-scale, 0.8)) !important;
+    transform-origin: center !important;
   }
 
   header .font-bold {
@@ -60,24 +53,8 @@
   header .font-bold div:nth-child(3) {
     transform: translateX(-14vw) !important;
   }
-}
 
-/* ---------- Mobile header tightening ---------- */
-@media (max-width: 700px) {
-  header {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
-  header .logo {
-    margin-top: 0 !important;
-    transform: translateY(0) !important;
-  }
-
-  header > div {
-    gap: 0 !important;
-  }
+  header > div { gap: 0 !important; }
 }
 
 /* ---------- Base typography ---------- */
@@ -107,7 +84,6 @@ img {
 }
 
 /* ---------- SEO-supportive tweaks ---------- */
-/* These help search engines interpret layout and content clearly */
 h1, h2, h3 {
   font-weight: 700;
   line-height: 1.25;
@@ -117,11 +93,10 @@ p {
   margin-bottom: 1rem;
 }
 
-/* remove width limit inside your main app area */
+/* Remove width limit inside main app area */
 main p {
   max-width: none;
 }
-
 
 a {
   color: #704d2a;
