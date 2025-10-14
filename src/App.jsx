@@ -115,27 +115,17 @@ const FlippableBox = ({
     <div
       onMouseEnter={() => setFlipped(true)}
       onMouseLeave={() => setFlipped(false)}
-      className={`relative w-full ${height}`}
-      style={{
-        perspective: "1000px",
-        WebkitPerspective: "1000px",
-      }}
+      className={`relative w-full ${height} perspective`}
     >
       <div
-        className={`relative w-full h-full duration-700 transform ${
+        className={`relative w-full h-full duration-700 preserve-3d ${
           flipped ? "rotate-y-180" : ""
         }`}
-        style={{
-          transformStyle: "preserve-3d",
-          WebkitTransformStyle: "preserve-3d",
-        }}
       >
         {/* FRONT */}
         <div
-          className={`absolute inset-0 ${ROUNDED} p-6 flex flex-col items-center justify-center text-center`}
+          className={`absolute inset-0 ${ROUNDED} p-6 flex flex-col items-center justify-center text-center backface-hidden`}
           style={{
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
             background: bg,
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
@@ -156,12 +146,8 @@ const FlippableBox = ({
 
         {/* BACK */}
         <div
-          className={`absolute inset-0 ${ROUNDED} p-6 flex items-center justify-center text-center`}
+          className={`absolute inset-0 ${ROUNDED} p-6 flex items-center justify-center text-center backface-hidden rotate-y-180`}
           style={{
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-            WebkitTransform: "rotateY(180deg)",
             background: bg,
             color: textColor,
             border: border ? `2px solid ${border}` : "none",
@@ -174,6 +160,7 @@ const FlippableBox = ({
     </div>
   );
 };
+
 
 
 /* ---------- main page ---------- */
