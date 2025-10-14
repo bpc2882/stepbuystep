@@ -1,12 +1,10 @@
-
 @import "tailwindcss";
 
+/* ---------- Content sources ---------- */
 @source "../index.html";
 @source "./**/*.{js,jsx,ts,tsx}";
 
-
-
-/* Any extra utilities */
+/* ---------- 3D utilities ---------- */
 .perspective {
   perspective: 1000px;
 }
@@ -20,20 +18,24 @@
   transform: rotateY(180deg);
 }
 
+
+
+
+/* ---------- Responsive header (≤700px) ---------- */
 @media (max-width: 700px) {
   header {
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: flex-start !important;
     height: auto !important;
-    padding-top: 0.8rem !important; /* tighter to top */
-    padding-left: 6vw !important;   /* small side inset */
+    padding-top: 0.8rem !important;
+    padding-left: 6vw !important;
   }
 
   header img {
     max-width: 45vw !important;
     height: auto !important;
-    margin-bottom: 0.8rem !important; /* closer to taglines */
+    margin-bottom: 0.8rem !important;
   }
 
   header .font-bold {
@@ -49,7 +51,6 @@
     margin: 0.25rem 0 !important;
   }
 
-  /* ✅ stepped alignment that scales with screen width */
   header .font-bold div:nth-child(1) {
     transform: translateX(0) !important;
   }
@@ -61,6 +62,25 @@
   }
 }
 
+/* ---------- Mobile header tightening ---------- */
+@media (max-width: 700px) {
+  header {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  header .logo {
+    margin-top: 0 !important;
+    transform: translateY(0) !important;
+  }
+
+  header > div {
+    gap: 0 !important;
+  }
+}
+
+/* ---------- Base typography ---------- */
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -69,4 +89,45 @@ html {
 body {
   margin: 0;
   padding: 0;
+  color: #2b2b2b;
+  background-color: #f3e5c8;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.6;
+}
+
+/* ---------- Logo styling ---------- */
+.logo {
+  filter: drop-shadow(0 4px 10px rgba(160, 140, 110, 0.5));
+}
+
+/* ---------- Accessibility helpers ---------- */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- SEO-supportive tweaks ---------- */
+/* These help search engines interpret layout and content clearly */
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+/* remove width limit inside your main app area */
+main p {
+  max-width: none;
+}
+
+
+a {
+  color: #704d2a;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

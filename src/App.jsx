@@ -47,12 +47,13 @@ function getBreakpointLabel(width) {
 /* ---------- reusable components ---------- */
 const BodyText = ({ children, className = "" }) => (
   <p
-    className={`leading-relaxed text-lg md:text-xl w-full text-justify ${className} mb-5`}
+    className={`leading-relaxed text-lg md:text-xl w-full text-justify max-w-none ${className} mb-5`}
     style={{ color: BASE_TEXT_COLOR }}
   >
     {children}
   </p>
 );
+
 
 const HighlightSBS = () => (
   <span className="inline-flex items-baseline gap-1 align-baseline font-bold">
@@ -182,32 +183,28 @@ function StepBuyStepPage() {
       </div>
 
 {/* ---------- HEADER ---------- */}
-<header className="w-full bg-[#CBBCA7] py-10">
-  <div className="max-w-[75rem] mx-auto px-10 grid grid-cols-1 md:grid-cols-2 items-center gap-y-1 md:gap-x-8">
+<header
+  className="w-full flex items-center justify-center md:justify-start"
+  style={{
+    minHeight: '5rem',
+    width: '100%',            // ✅ not 100vw
+    background:
+      'linear-gradient(180deg, #1B2733 0%, #213042 50%, #16212C 80%, #1B2733 100%)',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 100%',
+  }}
+>
 
-{/* Logo */}
-<div className="flex justify-center md:justify-start items-center w-full mt-10 md:mt-0">
-  <div className="scale-[1.15] sm:scale-105 translate-y-5 md:translate-y-0">
+  <div className="flex justify-center md:justify-start items-center w-full">
     <img
       src={Logo}
       alt="Step Buy Step logo"
-      className="object-contain w-full max-w-[420px] h-auto align-middle"
+      className="object-contain h-auto w-[55vw] sm:w-[45vw] md:w-[350px] lg:w-[420px] align-middle"
+      style={{
+        transform: 'scale(var(--logo-scale, 0.7))',
+        transformOrigin: 'center',
+      }}
     />
-  </div>
-</div>
-
-
-    {/* Taglines
-    <div className="flex justify-center md:justify-end items-center w-full mt-0 md:mt-4 md:translate-x-[-2rem]">
-      <div className="scale-[1.5] sm:scale-100">
-        <img
-          src={CutProc}
-          alt="Cut procurement costs"
-          className="object-contain w-full max-w-[640px] h-auto align-middle"
-        />
-      </div>
-    </div> */}
-
   </div>
 </header>
 
@@ -217,14 +214,19 @@ function StepBuyStepPage() {
 
 
       {/* ---------- MAIN CONTENT ---------- */}
-      <main
-        className="relative z-20 pb-20 mx-auto"
-        style={{ maxWidth: PAGE_WIDTH, padding: "0 2rem" }}
-      >
+<main
+  className="relative z-20 pb-20 mx-auto box-border"
+  style={{
+    maxWidth: PAGE_WIDTH,
+    margin: "0 auto",
+    padding: "0 1.5rem",
+  }}
+>
+
 
         {/* <MakeALine className="mx-auto mt-1 mb-6" /> */}
         <p
-          className="text-lg md:text-3xl leading-relaxed mt-0 mb-4 text-center"
+          className="text-lg md:text-3xl leading-relaxed mt-2 mb-4 text-center"
           style={{ color: BASE_TEXT_COLOR }}
         >
           <HighlightSBS /> makes procurement simple — save money, save time, and
@@ -232,7 +234,7 @@ function StepBuyStepPage() {
         </p>
 
         {/* CTA */}
-        <div className="flex justify-center mt-6 mb-10">
+        <div className="flex justify-center mt-8 mb-8">
           <a
             href="#contact"
             className="inline-block px-10 py-4 text-lg font-medium tracking-wide rounded-xl shadow-md transition-all duration-300 hover:scale-[1.04] hover:shadow-lg antialiased"
@@ -247,17 +249,17 @@ function StepBuyStepPage() {
         </div>
 
         {/* Intro */}
-        <section className="text-justify mb-12">
-          <BodyText>
-            Procurement can be difficult — but it doesn’t have to be painful.
+<section className="mb-12 px-0 mx-auto max-w-[75rem]">
+  <BodyText>
+             Procurement can be difficult — but it doesn’t have to be painful.
             Whether you’re a buyer trying to deliver value and stay compliant,
             or a supplier aiming to win more work, <HighlightSBS /> brings a
             clear, logical approach to commercial activity. Rooted in
             problem-solving rather than procedure, we help organisations cut
             through complexity, focus on outcomes, and make better buying and
             business decisions with confidence.
-          </BodyText>
-        </section>
+  </BodyText>
+</section>
 
         <SectionTitle text="Our services..." />
 

@@ -2,17 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#CBBCA7" />
+
+    <title>StepBuyStep — Procurement as a Service for Councils and SMEs</title>
+    <meta name="description" content="StepBuyStep provides Procurement as a Service, training, and advisory support to councils and SMEs — helping you cut procurement costs with no jargon and no fuss." />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://stepbuystep.co.uk/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="StepBuyStep" />
+    <meta property="og:title" content="Procurement as a Service for Councils and SMEs" />
+    <meta property="og:description" content="Cut procurement costs with clear, pragmatic support: advisory, training, and Procurement-as-a-Service." />
+    <meta property="og:url" content="https://stepbuystep.co.uk/" />
+    <meta property="og:image" content="https://stepbuystep.co.uk/og-image.jpg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="StepBuyStep — Procurement Made Practical" />
+    <meta name="twitter:description" content="Clear, pragmatic procurement support for councils and SMEs." />
+    <meta name="twitter:image" content="https://stepbuystep.co.uk/og-image.jpg" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/src/assets/step buy step-1.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>StepBuyStep — Procurement Made Simple</title>
 
-    <!-- Google Fonts: Lato -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
 
-    <!-- Force body to use Lato -->
+    <!-- Inline font style -->
     <style>
       body {
         font-family: 'Lato', sans-serif;
@@ -23,19 +42,14 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YH9CHMCVX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
+      function gtag(){ dataLayer.push(arguments); }
       gtag('js', new Date());
       gtag('config', 'G-4YH9CHMCVX');
     </script>
   </head>
-<body class="text-[#2B2B2B] font-sans bg-[#F3E5C8]">
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
-</body>
 
-
-
-
+  <body class="text-[#2B2B2B] font-sans bg-[#F3E5C8]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
