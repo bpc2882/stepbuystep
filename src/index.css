@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* --- Custom overrides --- */
+nav a {
+  color: #C57A44  !important;
+}
+
+nav a:hover {
+  color: #E39B57  !important;
+}
+
+body, button, input, select, textarea {
+  font-family: 'Cabin' sans-serif !important;
+}
+
+
 /* ---------- Content sources ---------- */
 @source "../index.html";
 @source "./**/*.{js,jsx,ts,tsx}";
