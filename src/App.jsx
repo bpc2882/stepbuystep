@@ -13,54 +13,37 @@ import {
 import ContactForm from "./ContactForm";
 import { Routes, Route, Link } from "react-router-dom";
 import About from "./About";
-import {
-  makeGradient,
-  getTextColor,
-  SHADOW_STRENGTH,
-  ROUNDED,
-  BASE_TEXT_COLOR,
-  contactHSL,
-  aboutHSL,
-} from "./theme";
+import { makeGradient, getTextColor, COLORS, SHADOWS } from "./theme";
+import { SURFACES, HOVERS } from "./theme/objects";
+import InfoBox from "./components/InfoBox";
+
+import * as theme from "./theme";
+window.theme = theme;
 
 /* ---------- CTA BUTTON ---------- */
-const CTAButton = ({ text, href, to }) => {
-  const baseStyle = {
-    background: "linear-gradient(135deg, #2d5e49 0%, #3f7c5a 50%, #5fa274 100%)",
-    color: "#ffffff",
-    boxShadow:
-      "0 6px 14px rgba(0,0,0,0.18), inset 0 1px 1px rgba(255,255,255,0.25)",
-    border: "1px solid rgba(12, 54, 46, 0.35)",
-    transition: "all 0.3s ease",
-  };
+const CTAButton = ({ text, href, to, h = 35, s = 85, l = 55 }) => {
+  const [hovered, setHovered] = useState(false);
+  const style = hovered
+    ? { ...SURFACES.clickable(h, s, l), ...HOVERS.lift }
+    : SURFACES.clickable(h, s, l);
 
   const classes =
-    "inline-block px-12 py-8 md:px-16 md:py-10 rounded-2xl text-lg md:text-xl font-semibold " +
-    "tracking-wide hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(61,138,119,0.45)] " +
-    "focus:outline-none antialiased text-center";
+    "inline-block px-12 py-8 md:px-16 md:py-10 text-lg md:text-xl font-semibold tracking-wide text-center rounded-2xl transition-all duration-300 ease-out";
 
-  if (to)
-    return (
-      <Link to={to} className={classes} style={baseStyle}>
-        {text}
-      </Link>
-    );
-  if (href)
-    return (
-      <a href={href} className={classes} style={baseStyle}>
-        {text}
-      </a>
-    );
-  return (
-    <button className={classes} style={baseStyle}>
-      {text}
-    </button>
-  );
+  const Wrapper = to ? Link : href ? "a" : "button";
+  const props = {
+    to,
+    href,
+    className: classes,
+    style,
+    onMouseEnter: () => setHovered(true),
+    onMouseLeave: () => setHovered(false),
+  };
+
+  return <Wrapper {...props}>{text}</Wrapper>;
 };
 
 /* ---------- constants ---------- */
-const MODERN_BG = "linear-gradient(180deg, #CBBCA7 0%, #B2A28E 100%)";
-const TEXT_COLOR = "#222";
 const PAGE_WIDTH = "75rem";
 
 /* ---------- helpers ---------- */
@@ -82,7 +65,7 @@ function generateShades(baseH, baseS, baseL, count = 3) {
 const BodyText = ({ children, className = "" }) => (
   <p
     className={`leading-relaxed text-lg md:text-xl w-full text-justify max-w-none ${className} mb-5`}
-    style={{ color: BASE_TEXT_COLOR }}
+    style={{ color: COLORS.textBase }}
   >
     {children}
   </p>
@@ -119,10 +102,7 @@ const SectionTitle = ({ text = "" }) => {
 
   return (
     <div className="mt-8 mb-12 text-center w-full mx-auto relative">
-      <h2
-        className="text-3xl md:text-4xl font-bold tracking-wide mb-6 relative z-10"
-        style={{ color: BASE_TEXT_COLOR }}
-      >
+      <h2 className="text-3xl md:text-4xl font-bold tracking-wide mb-6 relative z-10 text-sbs-textBase">
         {wholeIsSBS ? (
           <HighlightSBS />
         ) : (
@@ -133,69 +113,6 @@ const SectionTitle = ({ text = "" }) => {
         )}
       </h2>
       <MakeALine className="mt-4" />
-    </div>
-  );
-};
-
-/* ---------- flippable box ---------- */
-const FlippableBox = ({
-  icon: Icon,
-  title,
-  text,
-  detail,
-  bg,
-  textColor,
-  border,
-  height = "h-64",
-}) => {
-  const [flipped, setFlipped] = useState(false);
-
-  return (
-    <div
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
-      className={`relative w-full ${height} perspective`}
-    >
-      <div
-        className={`relative w-full h-full duration-700 preserve-3d ${
-          flipped ? "rotate-y-180" : ""
-        }`}
-      >
-        {/* FRONT */}
-        <div
-          className={`absolute inset-0 ${ROUNDED} p-6 flex flex-col items-center justify-center text-center backface-hidden`}
-          style={{
-            background: bg,
-            color: textColor,
-            border: border ? `2px solid ${border}` : "none",
-            boxShadow: SHADOW_STRENGTH,
-          }}
-        >
-          <Icon
-            className="absolute inset-0 m-auto w-3/4 h-3/4 opacity-20"
-            style={{ color: textColor }}
-          />
-          <h3 className="text-2xl font-bold mb-4 tracking-wide relative z-10 leading-snug">
-            {title}
-          </h3>
-          <p className="font-medium text-lg leading-relaxed relative z-10 mt-2">
-            {text}
-          </p>
-        </div>
-
-        {/* BACK */}
-        <div
-          className={`absolute inset-0 ${ROUNDED} p-6 flex items-center justify-center text-center backface-hidden rotate-y-180`}
-          style={{
-            background: bg,
-            color: textColor,
-            border: border ? `2px solid ${border}` : "none",
-            boxShadow: SHADOW_STRENGTH,
-          }}
-        >
-          <p className="font-medium text-lg leading-relaxed">{detail}</p>
-        </div>
-      </div>
     </div>
   );
 };
@@ -212,18 +129,9 @@ function StepBuyStepPage() {
   }, []);
 
   return (
-    <div
-      className="relative overflow-hidden antialiased min-h-screen"
-      style={{ backgroundColor: "#F4E5C8", color: TEXT_COLOR }}
-    >
+    <div className="relative overflow-hidden antialiased min-h-screen bg-sbs-bg text-sbs-textBase">
       {/* ---------- HEADER ---------- */}
-      <header
-        className="relative w-full flex items-center justify-between py-1 sm:py-2 px-6 overflow-visible"
-        style={{
-          backgroundColor: "#1B2733",
-          boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
-        }}
-      >
+      <header className="relative w-full flex items-center justify-between py-1 sm:py-2 px-6 overflow-visible bg-sbs-brandCopper shadow-strong">
         <svg
           className="absolute inset-0 w-full h-full opacity-25"
           viewBox="0 0 1200 120"
@@ -251,12 +159,7 @@ function StepBuyStepPage() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="p-2 rounded-md transition hover:scale-105 mr-12 flex-shrink-0"
-            style={{
-              background: "linear-gradient(135deg, #C17E46 0%, #F4B93C 100%)",
-              color: "#2a1e12",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
-            }}
+            className="p-2 rounded-md transition hover:scale-105 mr-12 flex-shrink-0 bg-gradient-to-br from-sbs-brandCopper to-sbs-brandAmber text-sbs-textBase shadow-strong"
             aria-label="Menu"
           >
             <svg
@@ -316,10 +219,7 @@ function StepBuyStepPage() {
           padding: "0 1.5rem",
         }}
       >
-        <p
-          className="text-lg md:text-3xl leading-relaxed mt-2 mb-4 text-center"
-          style={{ color: BASE_TEXT_COLOR }}
-        >
+        <p className="text-lg md:text-3xl leading-relaxed mt-2 mb-4 text-center text-sbs-textBase">
           <HighlightSBS /> makes procurement simple — save money, save time, and
           stay in control.
         </p>
@@ -369,12 +269,14 @@ function StepBuyStepPage() {
                 },
               ][idx];
               return (
-                <FlippableBox
+                <InfoBox
                   key={idx}
                   {...items}
-                  bg={makeGradient(color.h, color.s, color.l)}
+                  h={color.h}
+                  s={color.s}
+                  l={color.l}
                   textColor="#FFFFFF"
-                  height="h-64"
+                  flippable
                 />
               );
             })}
@@ -410,17 +312,19 @@ function StepBuyStepPage() {
                 },
               ][idx];
               return (
-                <FlippableBox
+                <InfoBox
                   key={idx}
                   {...items}
-                  bg={makeGradient(color.h, color.s, color.l)}
+                  h={color.h}
+                  s={color.s}
+                  l={color.l}
                   textColor="#3B2F12"
-                  height="h-64"
+                  flippable
                 />
               );
             })}
           </div>
-        </section>
+        </section> {/* ✅ Properly closed here */}
 
         <div className="flex justify-center mt-12 w-full">
           <CTAButton to="/about" text="Find out more about our services" />
@@ -445,22 +349,15 @@ function StepBuyStepPage() {
         <SectionTitle text="Contact Us" />
         <section
           id="contact"
-          className={`${ROUNDED} backdrop-blur shadow-md p-8`}
-          style={{ backgroundColor: "#F6EFE7", color: BASE_TEXT_COLOR }}
+          className="rounded-default backdrop-blur shadow-strong p-8 bg-sbs-bg text-sbs-textBase"
         >
           <ContactForm />
         </section>
 
-        <footer
-          className="w-full mt-16 py-6 text-center text-sm tracking-wide"
-          style={{
-            backgroundColor: "#1B2733",
-            color: "#e6e0d5",
-          }}
-        >
+        <footer className="w-full mt-16 py-6 text-center text-sm tracking-wide bg-sbs-brandCopper text-sbs-textBase">
           <p>
             <strong>StepBuyStep Ltd.</strong> is a company registered in England
-            &amp; Wales. Company number: <strong>15482719</strong>.
+            &amp; Wales. Company number: <strong>16754101</strong>.
           </p>
           <p className="mt-1 opacity-80">
             © {new Date().getFullYear()} StepBuyStep Ltd. All rights reserved.

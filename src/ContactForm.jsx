@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  makeGradient,
-  getTextColor,
-  SHADOW_STRENGTH,
-  ROUNDED,
-  contactHSL,
-} from "./theme";
+import { makeGradient, getTextColor, COLORS, SHADOWS } from "./theme";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -28,7 +22,9 @@ export default function ContactForm() {
 
       const text = await res.text();
       let data = {};
-      try { data = JSON.parse(text); } catch (_) {}
+      try {
+        data = JSON.parse(text);
+      } catch (_) {}
 
       if (res.ok) {
         setStatus("Message sent successfully!");
@@ -48,54 +44,68 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Name */}
       <div>
-        <label className="block mb-2 font-medium" htmlFor="name">Name</label>
+        <label className="block mb-2 font-medium" htmlFor="name">
+          Name
+        </label>
         <input
           id="name"
           type="text"
           value={formData.name}
           onChange={handleChange}
           autoComplete="name"
-          className={`w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 ${ROUNDED}`}
-          style={{ boxShadow: SHADOW_STRENGTH }}
+          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 rounded-[0.5rem]"
+          style={{ boxShadow: SHADOWS.soft }}
         />
       </div>
 
       {/* Email */}
       <div>
-        <label className="block mb-2 font-medium" htmlFor="email">Email</label>
+        <label className="block mb-2 font-medium" htmlFor="email">
+          Email
+        </label>
         <input
           id="email"
           type="email"
           value={formData.email}
           onChange={handleChange}
           autoComplete="email"
-          className={`w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 ${ROUNDED}`}
-          style={{ boxShadow: SHADOW_STRENGTH }}
+          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 rounded-[0.5rem]"
+          style={{ boxShadow: SHADOWS.soft }}
         />
       </div>
 
       {/* Message */}
       <div>
-        <label className="block mb-2 font-medium" htmlFor="message">Message</label>
+        <label className="block mb-2 font-medium" htmlFor="message">
+          Message
+        </label>
         <textarea
           id="message"
           rows="4"
           value={formData.message}
           onChange={handleChange}
           autoComplete="off"
-          className={`w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 ${ROUNDED}`}
-          style={{ boxShadow: SHADOW_STRENGTH }}
+          className="w-full p-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-amber-400 rounded-[0.5rem]"
+          style={{ boxShadow: SHADOWS.soft }}
         />
       </div>
 
       {/* Button */}
       <button
         type="submit"
-        className={`${ROUNDED} px-8 py-4 shadow-md hover:scale-[1.08] transition font-medium`}
+        className="rounded-[0.5rem] px-8 py-4 shadow-strong hover:scale-[1.08] transition font-medium"
         style={{
-          background: makeGradient(contactHSL.h, contactHSL.s, contactHSL.l),
-          color: getTextColor(contactHSL.h, contactHSL.s, contactHSL.l),
-          boxShadow: SHADOW_STRENGTH,
+          background: makeGradient(
+            COLORS.brandCopper.h,
+            COLORS.brandCopper.s,
+            COLORS.brandCopper.l
+          ),
+          color: getTextColor(
+            COLORS.brandCopper.h,
+            COLORS.brandCopper.s,
+            COLORS.brandCopper.l
+          ),
+          boxShadow: SHADOWS.strong,
         }}
       >
         Send Message
