@@ -15,7 +15,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import About from "./About";
 import { makeGradient, getTextColor, COLORS, SHADOWS } from "./theme";
 import { SURFACES, HOVERS } from "./theme/objects";
-import InfoBox from "./components/InfoBox";
+import InfoBox from "./Components/InfoBox";
 
 import * as theme from "./theme";
 window.theme = theme;
